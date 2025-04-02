@@ -323,16 +323,9 @@ export default function BarcodeGenerator() {
   const formatDescription = barcodeFormats[currentFormat].description;
 
   return (
-    <div className="container mx-auto max-w-4xl py-10">
-      <Card>
-        <CardHeader>
-          <CardTitle>Barcode Generator</CardTitle>
-          <CardDescription>
-            Generate barcodes in different formats with customizable options
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-6">
+    <div className="">
+      <div>
+        <div className="space-y-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -737,9 +730,9 @@ export default function BarcodeGenerator() {
               </div>
             </div>
           </div>
-        </CardContent>
+        </div>
 
-        <CardFooter className="flex flex-col space-y-4 text-xs text-muted-foreground">
+        <div className="flex flex-col space-y-4 text-xs text-muted-foreground mt-4">
           <div className="w-full">
             <p>
               Barcodes are machine-readable representations of data, commonly
@@ -752,8 +745,8 @@ export default function BarcodeGenerator() {
               encode alphanumeric data.
             </p>
           </div>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
