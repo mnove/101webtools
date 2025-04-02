@@ -124,6 +124,25 @@ export default function UUIDGenerator() {
     setTimeout(generateUUIDs, 0);
   };
 
+  // Function to generate a new random namespace
+  const generateNewNamespace = () => {
+    const newNamespace = uuidv4();
+    setNamespace(newNamespace);
+    setNamespaceError(""); // Clear any previous errors
+
+    // Regenerate UUIDs using the new namespace if we're in v5 mode
+    if (version === "v5") {
+      setTimeout(() => {
+        generateUUIDs();
+      }, 0);
+    }
+
+    toast("New namespace generated", {
+      description: "Generated a random UUID v4 as namespace",
+      duration: 2000,
+    });
+  };
+
   console.log("uuidv5", uuidv5("Hello, World!", NAMESPACE_URL));
   return (
     <div className="container mx-auto max-w-4xl py-10">
@@ -180,16 +199,26 @@ export default function UUIDGenerator() {
 
           {version === "v5" && (
             <div className="space-y-4">
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <Label>Namespace UUID</Label>
-                <>
+                <div className="flex gap-2">
                   <Input
                     value={namespace}
                     onChange={(e) => setNamespace(e.target.value)}
                     placeholder="Enter UUID namespace"
-                    className={namespaceError ? "border-red-500" : ""}
+                    className={`${
+                      namespaceError ? "border-red-500" : ""
+                    } flex-1`}
                   />
-                </>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={generateNewNamespace}
+                    title="Generate new namespace UUID"
+                  >
+                    <RefreshCw className="h-4 w-4" />
+                  </Button>
+                </div>
                 {namespaceError && (
                   <p className="text-xs text-red-500">{namespaceError}</p>
                 )}
@@ -198,7 +227,7 @@ export default function UUIDGenerator() {
                 </p>
               </div>
 
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <Label>Name</Label>
                 <>
                   <Input
@@ -209,6 +238,11 @@ export default function UUIDGenerator() {
                 </>
                 <p className="text-xs text-muted-foreground">
                   The name to hash with the namespace (e.g., domain name)
+                </p>
+
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-semibold">Note:</span> The same
+                  namespace and name will always generate the same UUID.
                 </p>
               </div>
             </div>
@@ -235,7 +269,7 @@ export default function UUIDGenerator() {
             </Select>
           </div>
 
-          <Button onClick={generateUUIDs} className="w-full" variant="default">
+          <Button onClick={generateUUIDs} className="w-full" variant="brand">
             <RefreshCw className="mr-2 h-4 w-4" /> Generate UUIDs
           </Button>
 

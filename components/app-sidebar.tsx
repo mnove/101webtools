@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  Barcode,
   BookOpen,
   Bot,
   Command,
@@ -73,9 +74,19 @@ const data: NavbarData = {
           icon: IdCard,
         },
         {
-          name: "Travel",
-          url: "#",
-          icon: Map,
+          name: "ULID Generator",
+          url: "/tools/ulid-generator",
+          icon: IdCard,
+        },
+      ],
+    },
+    {
+      group: "Code Generators",
+      items: [
+        {
+          name: "Barcode Generator",
+          url: "/tools/barcode-generator",
+          icon: Barcode,
         },
       ],
     },

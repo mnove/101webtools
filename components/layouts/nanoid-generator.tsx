@@ -264,7 +264,7 @@ export default function NanoidGenerator() {
             </Select>
           </div>
 
-          <Button onClick={generateIds} className="w-full" variant="default">
+          <Button onClick={generateIds} className="w-full" variant="brand">
             <RefreshCw className="mr-2 h-4 w-4" /> Generate IDs
           </Button>
 
