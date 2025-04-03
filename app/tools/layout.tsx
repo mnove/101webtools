@@ -13,7 +13,7 @@ export default function DashboardLayout({
     <div className="[--header-height:calc(--spacing(14))] ">
       <SidebarProvider className="flex flex-col w-auto">
         <SiteHeader />
-        <div className="flex flex-1 mx-auto ">
+        <div className="flex flex-1">
           <AppSidebar />
           <SidebarInset className="p-4 relative max-h-[calc(100vh-var(--header-height)-1px)] overflow-hidden">
             {/* <InsetHeader /> */}

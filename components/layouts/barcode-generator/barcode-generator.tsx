@@ -409,7 +409,7 @@ export default function BarcodeGenerator() {
               </div>
 
               <Collapsible defaultOpen={true} className="mb-8">
-                <CollapsibleTrigger className="text-muted-foreground uppercase text-xs flex w-full items-center gap-2 mb-4 group cursor-pointer">
+                <CollapsibleTrigger className="text-muted-foreground uppercase text-xs flex w-full items-center gap-2 mb-4 group cursor-pointer tracking-wider">
                   Styling
                   <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:-rotate-180" />
                 </CollapsibleTrigger>
@@ -531,7 +531,7 @@ export default function BarcodeGenerator() {
               </Collapsible>
 
               <Collapsible open={form.watch("displayValue")}>
-                <CollapsibleTrigger className="text-muted-foreground uppercase text-xs flex w-full items-center gap-2 mb-4 group cursor-pointer">
+                <CollapsibleTrigger className="text-muted-foreground uppercase text-xs flex w-full items-center gap-2 mb-4 group cursor-pointer tracking-wider">
                   <FormField
                     control={form.control}
                     name="displayValue"

@@ -182,15 +182,9 @@ export default function NanoidGenerator() {
   const collisionData = generateCollisionProbabilityData();
 
   return (
-    <div className="container mx-auto max-w-4xl py-10">
-      <Card>
-        <CardHeader>
-          <CardTitle>Nano ID Generator</CardTitle>
-          <CardDescription>
-            Generate secure, unique IDs with custom length and quantity
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
+    <div className="w-full py-10">
+      <div>
+        <div className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="alphabet" className="text-sm font-medium">
               Character Set
@@ -293,8 +287,8 @@ export default function NanoidGenerator() {
               ))}
             </div>
           </div>
-        </CardContent>
-        <CardFooter className="flex flex-col space-y-4 text-xs text-muted-foreground">
+        </div>
+        <div className="flex flex-col space-y-4 text-xs text-muted-foreground">
           <div className="w-full flex justify-between">
             <p>Based on nanoid library</p>
             <p>
@@ -358,8 +352,8 @@ export default function NanoidGenerator() {
               </p>
             </div>
           </div>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
