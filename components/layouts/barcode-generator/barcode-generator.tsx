@@ -1,43 +1,6 @@
 "use client";
 
-import * as React from "react";
-import Barcode from "react-barcode";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Clipboard,
-  RefreshCw,
-  Info,
-  RotateCcw,
-  Download,
-  Image as ImageIcon,
-} from "lucide-react";
-import { toast } from "sonner";
-import { Label } from "@/components/ui/label";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import {
   Form,
   FormControl,
@@ -47,7 +10,45 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ChevronDown,
+  ChevronDownIcon,
+  Clipboard,
+  Download,
+  Image as ImageIcon,
+  Info,
+  RefreshCw,
+  RotateCcw,
+} from "lucide-react";
+import * as React from "react";
+import Barcode from "react-barcode";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+import { ColorPicker } from "../../ui/color-picker";
+import { Slider } from "../../ui/slider";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Separator } from "@/components/ui/separator";
 
 // Barcode formats and their descriptions
 const barcodeFormats = {
@@ -328,91 +329,92 @@ export default function BarcodeGenerator() {
         <div className="space-y-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="format"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Barcode Format</FormLabel>
-                        <Select
-                          onValueChange={(value) => {
-                            field.onChange(value);
-                            // Clear any existing errors when format changes
-                            form.clearErrors("value");
-                          }}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select format" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {Object.entries(barcodeFormats).map(
-                              ([key, value]) => (
-                                <SelectItem key={key} value={key}>
-                                  {value.name}
-                                </SelectItem>
-                              )
-                            )}
-                          </SelectContent>
-                        </Select>
-                        <p className="text-xs text-muted-foreground flex items-center">
-                          {formatDescription}
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Info className="h-3 w-3 ml-1 cursor-help" />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p className="w-[220px] text-xs">
-                                  Example:{" "}
-                                  {barcodeFormats[currentFormat].example}
-                                </p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </p>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="value"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Barcode Value</FormLabel>
+              <div className="grid grid-cols-8 items-start w-full gap-6 mb-4">
+                <FormField
+                  control={form.control}
+                  name="value"
+                  render={({ field }) => (
+                    <FormItem className="col-span-8 md:col-span-6">
+                      <FormLabel>Barcode Value</FormLabel>
+                      <FormControl>
+                        <Input
+                          size="lg"
+                          {...field}
+                          placeholder="Enter barcode value"
+                          className={
+                            form.formState.errors.value ? "border-red-500" : ""
+                          }
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        {currentFormat === "EAN13" &&
+                          "Must be exactly 13 digits"}
+                        {currentFormat === "EAN8" && "Must be exactly 8 digits"}
+                        {currentFormat === "UPC" && "Must be exactly 12 digits"}
+                        {currentFormat === "CODE39" &&
+                          "Only uppercase letters, numbers, and symbols: - . $ / + % space"}
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="format"
+                  render={({ field }) => (
+                    <FormItem className="w-full col-span-8 md:col-span-2">
+                      <FormLabel>Barcode Format</FormLabel>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                          // Clear any existing errors when format changes
+                          form.clearErrors("value");
+                        }}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
-                          <Input
-                            {...field}
-                            placeholder="Enter barcode value"
-                            className={
-                              form.formState.errors.value
-                                ? "border-red-500"
-                                : ""
-                            }
-                          />
+                          <SelectTrigger size="lg">
+                            <SelectValue placeholder="Select format" />
+                          </SelectTrigger>
                         </FormControl>
-                        <FormDescription>
-                          {currentFormat === "EAN13" &&
-                            "Must be exactly 13 digits"}
-                          {currentFormat === "EAN8" &&
-                            "Must be exactly 8 digits"}
-                          {currentFormat === "UPC" &&
-                            "Must be exactly 12 digits"}
-                          {currentFormat === "CODE39" &&
-                            "Only uppercase letters, numbers, and symbols: - . $ / + % space"}
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                        <SelectContent>
+                          {Object.entries(barcodeFormats).map(
+                            ([key, value]) => (
+                              <SelectItem key={key} value={key}>
+                                {value.name}
+                              </SelectItem>
+                            )
+                          )}
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-muted-foreground flex items-center">
+                        {formatDescription}
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Info className="h-3 w-3 ml-1 cursor-help" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="w-[220px] text-xs">
+                                Example: {barcodeFormats[currentFormat].example}
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </p>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+              <Collapsible defaultOpen={true} className="mb-8">
+                <CollapsibleTrigger className="text-muted-foreground uppercase text-xs flex w-full items-center gap-2 mb-4 group cursor-pointer">
+                  Styling
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:-rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <FormField
                       control={form.control}
                       name="width"
@@ -457,9 +459,7 @@ export default function BarcodeGenerator() {
                         </FormItem>
                       )}
                     />
-                  </div>
 
-                  <div className="grid grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
                       name="background"
@@ -470,10 +470,10 @@ export default function BarcodeGenerator() {
                             <FormControl>
                               <Input {...field} />
                             </FormControl>
-                            <input
-                              type="color"
+
+                            <ColorPicker
                               value={field.value}
-                              onChange={(e) => field.onChange(e.target.value)}
+                              onChange={field.onChange}
                               className="w-10 h-10 rounded-md border cursor-pointer"
                             />
                           </div>
@@ -492,10 +492,10 @@ export default function BarcodeGenerator() {
                             <FormControl>
                               <Input {...field} />
                             </FormControl>
-                            <input
-                              type="color"
+
+                            <ColorPicker
                               value={field.value}
-                              onChange={(e) => field.onChange(e.target.value)}
+                              onChange={field.onChange}
                               className="w-10 h-10 rounded-md border cursor-pointer"
                             />
                           </div>
@@ -503,22 +503,44 @@ export default function BarcodeGenerator() {
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={form.control}
+                      name="margin"
+                      render={({ field }) => (
+                        <FormItem className="col-span-2">
+                          <FormLabel>Margin: {field.value}px</FormLabel>
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={50}
+                              step={1}
+                              {...field}
+                              value={[field.value]}
+                              onValueChange={(e) =>
+                                field.onChange(Number(e[0]))
+                              }
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </div>
-                </div>
+                </CollapsibleContent>
+              </Collapsible>
 
-                <div className="space-y-6">
+              <Collapsible open={form.watch("displayValue")}>
+                <CollapsibleTrigger className="text-muted-foreground uppercase text-xs flex w-full items-center gap-2 mb-4 group cursor-pointer">
                   <FormField
                     control={form.control}
                     name="displayValue"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                      <FormItem className="flex flex-row items-center justify-between ">
                         <div className="space-y-0.5">
-                          <FormLabel className="text-base">
+                          <FormLabel className="text-xs">
                             Display Text
                           </FormLabel>
-                          <FormDescription>
-                            Show barcode value text
-                          </FormDescription>
                         </div>
                         <FormControl>
                           <Switch
@@ -530,108 +552,98 @@ export default function BarcodeGenerator() {
                     )}
                   />
 
-                  {form.watch("displayValue") && (
-                    <>
-                      <FormField
-                        control={form.control}
-                        name="fontSize"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Font Size: {field.value}px</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="range"
-                                min={10}
-                                max={30}
-                                step={1}
-                                {...field}
-                                onChange={(e) =>
-                                  field.onChange(Number(e.target.value))
-                                }
-                                className="w-full"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="textPosition"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Text Position</FormLabel>
-                            <Select
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                            >
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Text position" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="top">Top</SelectItem>
-                                <SelectItem value="bottom">Bottom</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="textMargin"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Text Margin: {field.value}px</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="range"
-                                min={1}
-                                max={20}
-                                step={1}
-                                {...field}
-                                onChange={(e) =>
-                                  field.onChange(Number(e.target.value))
-                                }
-                                className="w-full"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </>
-                  )}
-
-                  <FormField
-                    control={form.control}
-                    name="margin"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Margin: {field.value}px</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="range"
-                            min={0}
-                            max={50}
-                            step={1}
-                            {...field}
-                            onChange={(e) =>
-                              field.onChange(Number(e.target.value))
-                            }
-                            className="w-full"
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:-rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  {" "}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-6">
+                      {form.watch("displayValue") && (
+                        <>
+                          <FormField
+                            control={form.control}
+                            name="fontSize"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>
+                                  Font Size: {field.value}px
+                                </FormLabel>
+                                <FormControl>
+                                  <Slider
+                                    min={10}
+                                    max={30}
+                                    step={1}
+                                    {...field}
+                                    value={[field.value]}
+                                    onValueChange={(e) =>
+                                      field.onChange(Number(e[0]))
+                                    }
+                                    className="w-full"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
+
+                          <FormField
+                            control={form.control}
+                            name="textPosition"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Text Position</FormLabel>
+                                <Select
+                                  onValueChange={field.onChange}
+                                  defaultValue={field.value}
+                                >
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Text position" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    <SelectItem value="top">Top</SelectItem>
+                                    <SelectItem value="bottom">
+                                      Bottom
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="textMargin"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>
+                                  Text Margin: {field.value}px
+                                </FormLabel>
+                                <FormControl>
+                                  <Slider
+                                    min={1}
+                                    max={20}
+                                    step={1}
+                                    {...field}
+                                    value={[field.value]}
+                                    onValueChange={(e) =>
+                                      field.onChange(Number(e[0]))
+                                    }
+                                    className="w-full"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
 
               <div className="flex flex-row gap-2 w-full">
                 <Button type="button" variant="outline" onClick={handleReset}>

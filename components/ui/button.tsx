@@ -59,3 +59,8 @@ function Button({
 }
 
 export { Button, buttonVariants };
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}

@@ -1,4 +1,4 @@
-import BarcodeGenerator from "@/components/layouts/barcode-generator";
+import BarcodeGenerator from "@/components/layouts/barcode-generator/barcode-generator";
 import ToolPageHeader from "@/components/tool-page-header";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
