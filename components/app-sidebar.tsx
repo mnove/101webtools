@@ -90,6 +90,17 @@ const data: NavbarData = {
         },
       ],
     },
+
+    {
+      group: "Design Tools",
+      items: [
+        {
+          name: "Typographic Scale Generator",
+          url: "/tools/typescale-generator",
+          icon: BookOpen,
+        },
+      ],
+    },
   ],
 };
 

@@ -1,4 +1,4 @@
-import { Barcode, IdCard } from "lucide-react";
+import { Barcode, IdCard, Text } from "lucide-react";
 
 export const toolsData = {
   barcodeGenerator: {
@@ -36,5 +36,15 @@ export const toolsData = {
     category: "ID_Generators",
     url: "/tools/ulid-generator",
     icon: IdCard,
+  },
+
+  typescaleGenerator: {
+    label: "Typographic Scale Generator",
+    description:
+      "Generate a typographic scale based on a base font size and scale factor",
+    badges: ["Typography", "Design"],
+    category: "Design_Tools",
+    url: "/tools/typescale-generator",
+    icon: Text,
   },
 };
