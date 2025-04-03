@@ -171,9 +171,9 @@ export function SampleLandingPreview({
               ))}
             </div>
             <p className="italic">
-              "The typography system transformed our design process. We now have
-              a consistent visual hierarchy that communicates effectively across
-              all our platforms."
+              &quot;The typography system transformed our design process. We now
+              have a consistent visual hierarchy that communicates effectively
+              across all our platforms.&quot;
             </p>
             <div>
               <div className="font-semibold">Sarah Johnson</div>

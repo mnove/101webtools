@@ -1,9 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { ulid, decodeTime } from "ulid";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Card,
   CardContent,
@@ -12,6 +15,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -19,23 +24,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Clipboard, RefreshCw, Info } from "lucide-react";
-import { toast } from "sonner";
-import { Label } from "../ui/label";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Checkbox } from "@/components/ui/checkbox";
 import { format } from "date-fns";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Clipboard, Info, RefreshCw } from "lucide-react";
+import * as React from "react";
+import { toast } from "sonner";
+import { decodeTime, ulid } from "ulid";
+import { Label } from "../ui/label";
 
 export default function ULIDGenerator() {
   const [quantity, setQuantity] = React.useState<number>(5);
@@ -46,7 +46,8 @@ export default function ULIDGenerator() {
   );
   const [monotonicGeneration, setMonotonicGeneration] =
     React.useState<boolean>(true);
-  const [lastULIDTime, setLastULIDTime] = React.useState<number>(0);
+
+  const [_lastULIDTime, setLastULIDTime] = React.useState<number>(0);
 
   // Generate ULIDs on initial load
   React.useEffect(() => {
@@ -56,7 +57,7 @@ export default function ULIDGenerator() {
   const generateULIDs = () => {
     try {
       let lastULID = "";
-      let timestamp = useCurrentTime
+      const timestamp = useCurrentTime
         ? Date.now()
         : new Date(customTime).getTime();
 
@@ -66,7 +67,7 @@ export default function ULIDGenerator() {
       // Generate the requested number of ULIDs
       const newULIDs = Array(quantity)
         .fill(0)
-        .map((_, index) => {
+        .map((_, _index) => {
           // For monotonic generation, ensure each subsequent ULID
           // is greater than the previous one even with the same timestamp
           if (monotonicGeneration && lastULID) {
@@ -74,7 +75,7 @@ export default function ULIDGenerator() {
             // If the new ULID is less than the previous (due to same timestamp but random part is lower),
             // increment the last character of the previous ULID
             if (nextULID <= lastULID) {
-              let incrementedULID = incrementULID(lastULID);
+              const incrementedULID = incrementULID(lastULID);
               lastULID = incrementedULID;
               return incrementedULID;
             } else {
@@ -103,7 +104,7 @@ export default function ULIDGenerator() {
     const randomPart = id.substring(10);
 
     // Convert the last character to make it bigger
-    let chars = randomPart.split("");
+    const chars = randomPart.split("");
     const crementalChar = chars[chars.length - 1];
 
     // Increment last character
@@ -160,6 +161,8 @@ export default function ULIDGenerator() {
         valid: true,
       };
     } catch (error) {
+      console.error("Invalid ULID:", error);
+      // Handle invalid ULID
       return { timestamp: 0, formatted: "Invalid ULID", valid: false };
     }
   };

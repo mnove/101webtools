@@ -1,32 +1,14 @@
 "use client";
 
+import { Barcode, BookOpen, IdCard } from "lucide-react";
 import * as React from "react";
-import {
-  Barcode,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  IdCard,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { ModeToggle } from "./mode-toggle";
@@ -35,7 +17,7 @@ import { NavTools } from "./nav-tools";
 export type NavbarTool = {
   name: string;
   url: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 export type NavbarToolGroup = {
@@ -112,10 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     >
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            {" "}
-            <ModeToggle />
-          </SidebarMenuItem>
+          <SidebarMenuItem> </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
@@ -123,7 +102,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
-        <NavUser user={data.user} />
+        {/* <NavUser user={data.user} /> */}
+        <ModeToggle />
       </SidebarFooter>
     </Sidebar>
   );

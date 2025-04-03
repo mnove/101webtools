@@ -1,18 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { nanoid, customAlphabet } from "nanoid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -20,25 +9,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 import { Clipboard, RefreshCw } from "lucide-react";
-import { toast } from "sonner";
-import { Label } from "../ui/label";
+import { customAlphabet, nanoid } from "nanoid";
 import {
-  lowercase,
   alphanumeric,
+  lowercase,
   nolookalikes,
   nolookalikesSafe,
   numbers,
   uppercase,
 } from "nanoid-dictionary";
+import * as React from "react";
 import {
-  LineChart,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
+import { toast } from "sonner";
+import { Label } from "../ui/label";
 
 // Dictionary of available alphabets
 const alphabets = {
@@ -105,11 +97,6 @@ export default function NanoidGenerator() {
   const debouncedQuantity = useDebounce(quantity, 300);
   const debouncedAlphabet = useDebounce(selectedAlphabet, 300);
 
-  // Generate IDs on initial load and when length/quantity/alphabet change
-  React.useEffect(() => {
-    generateIds();
-  }, [debouncedIdLength, debouncedQuantity, debouncedAlphabet]);
-
   const generateIds = () => {
     if (selectedAlphabet === "default") {
       // Use standard nanoid
@@ -129,6 +116,10 @@ export default function NanoidGenerator() {
       setGeneratedIds(newIds);
     }
   };
+  // Generate IDs on initial load and when length/quantity/alphabet change
+  React.useEffect(() => {
+    generateIds();
+  }, [debouncedIdLength, debouncedQuantity, debouncedAlphabet]);
 
   // Calculate entropy based on alphabet length
   const calculateEntropy = () => {

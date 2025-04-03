@@ -2,6 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
   Form,
   FormControl,
   FormDescription,
@@ -28,7 +33,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ChevronDown,
-  ChevronDownIcon,
   Clipboard,
   Download,
   Image as ImageIcon,
@@ -43,12 +47,6 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { ColorPicker } from "../../ui/color-picker";
 import { Slider } from "../../ui/slider";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Separator } from "@/components/ui/separator";
 
 // Barcode formats and their descriptions
 const barcodeFormats = {
@@ -57,7 +55,7 @@ const barcodeFormats = {
     description: "General purpose format",
     pattern: /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{}|;':",./<>?~ ]+$/,
     example: "ABC-1234567890",
-    validator: (value: string) => true, // CODE128 accepts most characters
+    validator: () => true, // CODE128 accepts most characters
   },
   EAN13: {
     name: "EAN13",
@@ -166,13 +164,14 @@ export default function BarcodeGenerator() {
     form.reset();
   };
 
+  const formatWatch = form.watch("format");
   // Generate example value when format changes
   React.useEffect(() => {
     const format = form.watch("format");
     form.setValue("value", barcodeFormats[format as BarcodeFormat].example);
     // Trigger revalidation after changing the value
     form.trigger("value");
-  }, [form.watch("format")]);
+  }, [formatWatch, form]);
 
   const onSubmit = (values: BarcodeFormValues) => {
     // Additional validation before generating the barcode
@@ -318,9 +317,11 @@ export default function BarcodeGenerator() {
 
   // Get the current format's validation pattern for display
   const currentFormat = form.watch("format") as BarcodeFormat;
-  const currentPattern = barcodeFormats[currentFormat].pattern
-    ?.toString()
-    .replace(/[\/^$]/g, "");
+
+  // TODO
+  // const currentPattern = barcodeFormats[currentFormat].pattern
+  //   ?.toString()
+  //   .replace(/[\/^$]/g, "");
   const formatDescription = barcodeFormats[currentFormat].description;
 
   return (

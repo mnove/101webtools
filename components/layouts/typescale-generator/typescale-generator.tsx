@@ -1,19 +1,18 @@
 "use client";
 
-import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { toast } from "sonner";
 import {
-  RefreshCw,
-  RotateCcw,
   Code,
+  FileText,
   Info,
   LayoutTemplate,
-  Type,
-  FileText,
+  RefreshCw,
+  RotateCcw,
 } from "lucide-react";
+import * as React from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -34,15 +33,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SampleLandingPreview } from "./sample-landing-preview";
 import { SampleBlogPreview } from "./sample-blog-preview";
+import { SampleLandingPreview } from "./sample-landing-preview";
+import { Separator } from "@/components/ui/separator";
 
 // Define font scale options with their descriptions
 const fontScales = {
@@ -232,53 +232,43 @@ h1 { font-size: var(--font-h1); }`;
     <div className="w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Top row with sample text input */}
-          <div className="w-full flex items-center justify-end">
-            <div className="w-full max-w-sm">
-              <FormField
-                control={form.control}
-                name="sampleText"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Sample Text</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Enter text to preview" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-
           {/* Three-column layout */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {/* 1. Settings Panel - Left Column */}
             <div className="space-y-6 col-span-1 md:col-span-3">
+              <h3 className="text-sm font-medium mb-4 uppercase font-mono text-muted-foreground">
+                SETTINGS
+              </h3>
               <div className="space-y-4">
                 <FormField
                   control={form.control}
                   name="scale"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Type Scale</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select scale type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {Object.entries(fontScales).map(([key, scale]) => (
-                            <SelectItem key={key} value={key}>
-                              {scale.name} ({scale.ratio})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <div className="grid grid-cols-3 gap-2 items-center">
+                        <FormLabel className="col-span-1">Type Scale</FormLabel>
+                        <div className="col-span-2 w-full">
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select scale type" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {Object.entries(fontScales).map(
+                                ([key, scale]) => (
+                                  <SelectItem key={key} value={key}>
+                                    {scale.name} ({scale.ratio})
+                                  </SelectItem>
+                                )
+                              )}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
                       <p className="text-xs text-muted-foreground flex items-center mt-1">
                         {scaleDescription}
                         <TooltipProvider>
@@ -301,27 +291,66 @@ h1 { font-size: var(--font-h1); }`;
                 />
                 <FormField
                   control={form.control}
+                  name="baseSize"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="grid grid-cols-3 gap-2 items-center">
+                        <FormLabel>Base Font Size: </FormLabel>
+                        <div className="col-span-2 w-full flex items-center gap-2">
+                          <FormControl>
+                            <Slider
+                              min={12}
+                              max={24}
+                              step={0.5}
+                              value={[field.value]}
+                              onValueChange={(values) =>
+                                field.onChange(values[0])
+                              }
+                              className="w-full"
+                            />
+                          </FormControl>{" "}
+                          <FormLabel className="min-w-[40px] text-right">
+                            {" "}
+                            {field.value}px
+                          </FormLabel>
+                        </div>
+                      </div>
+                      <FormDescription>
+                        Standard text size (paragraph)
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Separator className="my-4" />
+                <FormField
+                  control={form.control}
                   name="fontFamily"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Font Family</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a font" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {fontFamilies.map((font) => (
-                            <SelectItem key={font.value} value={font.value}>
-                              {font.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <div className="grid grid-cols-3 gap-2 items-center">
+                        <FormLabel>Font Family</FormLabel>
+                        <div className="col-span-2 w-full">
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select a font" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {fontFamilies.map((font) => (
+                                <SelectItem key={font.value} value={font.value}>
+                                  {font.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
                       <FormDescription>
                         Choose from common web fonts
                       </FormDescription>
@@ -332,43 +361,44 @@ h1 { font-size: var(--font-h1); }`;
 
                 <FormField
                   control={form.control}
-                  name="baseSize"
+                  name="sampleText"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Base Font Size: {field.value}px</FormLabel>
-                      <FormControl>
-                        <Slider
-                          min={12}
-                          max={24}
-                          step={0.5}
-                          value={[field.value]}
-                          onValueChange={(values) => field.onChange(values[0])}
-                          className="w-full"
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Standard text size (paragraph)
-                      </FormDescription>
+                      <div className="grid grid-cols-3 gap-2 items-center">
+                        <FormLabel>Sample Text</FormLabel>
+                        <div className="col-span-2 w-full">
+                          <FormControl>
+                            <Input
+                              {...field}
+                              placeholder="Enter text to preview"
+                            />
+                          </FormControl>
+                        </div>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-
-              <div className="flex flex-row gap-2 w-full items-center justify-around">
+              <Separator className="my-4" />
+              <div className="flex flex-row gap-2  items-center justify-between">
                 <Button type="button" variant="outline" onClick={handleReset}>
                   <RotateCcw className="mr-1 h-4 w-4" />
                   Reset
                 </Button>
-                <Button
-                  type="submit"
-                  variant="brand"
-                  disabled={
-                    !form.formState.isValid || form.formState.isSubmitting
-                  }
-                >
-                  <RefreshCw className="mr-1 h-4 w-4" /> Update Preview
-                </Button>
+
+                <div className="w-full">
+                  <Button
+                    type="submit"
+                    variant="brand"
+                    disabled={
+                      !form.formState.isValid || form.formState.isSubmitting
+                    }
+                    className="w-full"
+                  >
+                    <RefreshCw className="mr-1 h-4 " /> Update Preview
+                  </Button>
+                </div>
               </div>
 
               <Button
@@ -389,11 +419,14 @@ h1 { font-size: var(--font-h1); }`;
             </div>
 
             {/* 2. Scale Preview Panel - Middle Column (Always Visible) */}
-            <div className="col-span-1 md:col-span-4">
-              <div className="border rounded-lg shadow-sm p-6 h-full whitespace-nowrap overflow-y-hidden relative">
-                <h3 className="text-sm font-medium mb-4 uppercase">
+            <div className="col-span-1 md:col-span-4 ">
+              <div>
+                {" "}
+                <h3 className="text-sm font-medium mb-4 uppercase font-mono text-muted-foreground">
                   Type Scale Preview
                 </h3>
+              </div>
+              <div className="border rounded-lg shadow-sm p-6 h-full whitespace-nowrap overflow-y-hidden relative bg-muted/50">
                 <div
                   className="space-y-4"
                   style={{ fontFamily: scaleConfig.fontFamily }}
@@ -527,6 +560,12 @@ h1 { font-size: var(--font-h1); }`;
 
             {/* 3. Sample Tabs - Right Column */}
             <div className="col-span-1 md:col-span-5">
+              <div>
+                {" "}
+                <h3 className="text-sm font-medium mb-4 uppercase font-mono text-muted-foreground">
+                  Sample Pages
+                </h3>
+              </div>
               <div className="border rounded-lg shadow-sm h-full">
                 <Tabs
                   defaultValue="landing"

@@ -125,7 +125,7 @@ export function SampleBlogPreview({
           Typography is the art and technique of arranging type to make written
           language legible, readable, and appealing when displayed. Good
           typography establishes a strong visual hierarchy, provides a graphic
-          balance to the page, and sets the product's overall tone.
+          balance to the page, and sets the product&apos;s overall tone.
         </p>
 
         <h2
@@ -146,7 +146,7 @@ export function SampleBlogPreview({
             className="border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic"
             style={{ fontSize: "var(--blog-font-h5)" }}
           >
-            "Typography is what language looks like."
+            &quot;Typography is what language looks like.&quot;
             <footer
               className="mt-2 font-normal not-italic text-gray-600 dark:text-gray-400"
               style={{ fontSize: "var(--blog-font-small)" }}
@@ -208,8 +208,8 @@ export function SampleBlogPreview({
         <p className="mb-4 leading-relaxed">
           Many designers rely on classic type scales derived from music theory,
           such as the Perfect Fourth (1.333) or Golden Ratio (1.618). These
-          create natural, harmonious progressions that feel intuitively "right"
-          to readers.
+          create natural, harmonious progressions that feel intuitively
+          &quot;right&quot; to readers.
         </p>
 
         <div className="mb-8">
