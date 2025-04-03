@@ -23,6 +23,7 @@ export const siteConfig = {
   feedbackUrls: {
     giveFeedbackFormUrl: "https://tally.so/r/3jzXlx",
     reportBugFormUrl: "https://tally.so/r/3xzEN9",
+    toolRequestFormUrl: "https://tally.so/r/3jzroJ",
   },
 };
 

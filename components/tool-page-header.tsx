@@ -60,7 +60,7 @@ export default function ToolPageHeader({
             : "py-4"
         } transition-all duration-200`}
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-10xl">
           <div className="flex flex-row w-full items-start justify-between">
             <div
               className={`flex ${

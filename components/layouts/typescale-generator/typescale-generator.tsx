@@ -5,7 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
-import { RefreshCw, RotateCcw, Code, Info } from "lucide-react";
+import {
+  RefreshCw,
+  RotateCcw,
+  Code,
+  Info,
+  LayoutTemplate,
+  Type,
+  FileText,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +40,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SampleLandingPreview } from "./sample-landing-preview";
+import { SampleBlogPreview } from "./sample-blog-preview";
 
 // Define font scale options with their descriptions
 const fontScales = {
@@ -125,7 +136,7 @@ export default function TypeScaleGenerator() {
       scale: "perfectFourth",
       fontFamily:
         "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-      sampleText: "The quick brown fox jumps over the lazy dog",
+      sampleText: "How vexingly quick daft zebras jump!",
       showCode: false,
     },
   });
@@ -133,6 +144,11 @@ export default function TypeScaleGenerator() {
   // Get scale config
   const [scaleConfig, setScaleConfig] = React.useState<TypeScaleFormValues>(
     form.getValues()
+  );
+
+  // Update state for selected preview tab (only for landing/blog)
+  const [previewTab, setPreviewTab] = React.useState<"landing" | "blog">(
+    "landing"
   );
 
   // Function to calculate font size based on scale
@@ -216,23 +232,30 @@ h1 { font-size: var(--font-h1); }`;
     <div className="w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Settings Panel */}
-            <div className="space-y-6 col-span-1">
+          {/* Top row with sample text input */}
+          <div className="w-full flex items-center justify-end">
+            <div className="w-full max-w-sm">
+              <FormField
+                control={form.control}
+                name="sampleText"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Sample Text</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Enter text to preview" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          {/* Three-column layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {/* 1. Settings Panel - Left Column */}
+            <div className="space-y-6 col-span-1 md:col-span-3">
               <div className="space-y-4">
-                {/* <FormField
-                  control={form.control}
-                  name="sampleText"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Sample Text</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="Enter text to preview" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                 <FormField
                   control={form.control}
                   name="scale"
@@ -356,8 +379,6 @@ h1 { font-size: var(--font-h1); }`;
               >
                 <Code className="mr-1 h-4 w-4" /> Copy CSS Code
               </Button>
-              {/* </form>
-              </Form> */}
 
               <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
                 <h3 className="text-sm font-medium mb-2">CSS Code:</h3>
@@ -367,37 +388,18 @@ h1 { font-size: var(--font-h1); }`;
               </div>
             </div>
 
-            {/* Preview Panel */}
-            <div className="col-span-1 md:col-span-3">
-              <div className="flex flex-row items-center justify-between mb-4">
-                <h3 className="text-sm font-medium mb-4 uppercase ">
+            {/* 2. Scale Preview Panel - Middle Column (Always Visible) */}
+            <div className="col-span-1 md:col-span-4">
+              <div className="border rounded-lg shadow-sm p-6 h-full whitespace-nowrap overflow-y-hidden relative">
+                <h3 className="text-sm font-medium mb-4 uppercase">
                   Type Scale Preview
                 </h3>
-                <FormField
-                  control={form.control}
-                  name="sampleText"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Sample Text</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          placeholder="Enter text to preview"
-                          className="min-w-md"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="border rounded-lg shadow-sm p-6 h-full whitespace-nowrap overflow-y-hidden relative">
                 <div
                   className="space-y-4"
                   style={{ fontFamily: scaleConfig.fontFamily }}
                 >
                   <div className="space-y-1">
-                    <div className="text-xs text-muted-foreground ">
+                    <div className="text-xs text-muted-foreground">
                       h1 ({calculateSize(scaleConfig.baseSize, scaleRatio, 5)}
                       px)
                     </div>
@@ -520,6 +522,60 @@ h1 { font-size: var(--font-h1); }`;
                     </small>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* 3. Sample Tabs - Right Column */}
+            <div className="col-span-1 md:col-span-5">
+              <div className="border rounded-lg shadow-sm h-full">
+                <Tabs
+                  defaultValue="landing"
+                  value={previewTab}
+                  onValueChange={(value) =>
+                    setPreviewTab(value as "landing" | "blog")
+                  }
+                  className="w-full h-full"
+                >
+                  <div className="flex items-center justify-between p-4 border-b">
+                    <h3 className="text-sm font-medium uppercase">
+                      Sample Pages
+                    </h3>
+                    <TabsList>
+                      <TabsTrigger value="landing">
+                        <LayoutTemplate className="h-4 w-4 mr-2" />
+                        Landing
+                      </TabsTrigger>
+                      <TabsTrigger value="blog">
+                        <FileText className="h-4 w-4 mr-2" />
+                        Blog
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+
+                  <div className="overflow-x-auto p-2 h-[calc(100%-60px)]">
+                    <TabsContent value="landing" className="mt-0 h-full">
+                      <div className="min-w-max">
+                        <SampleLandingPreview
+                          fontFamily={scaleConfig.fontFamily}
+                          baseSize={scaleConfig.baseSize}
+                          scale={scaleRatio}
+                          sampleText={scaleConfig.sampleText}
+                        />
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="blog" className="mt-0 h-full">
+                      <div className="min-w-max">
+                        <SampleBlogPreview
+                          fontFamily={scaleConfig.fontFamily}
+                          baseSize={scaleConfig.baseSize}
+                          scale={scaleRatio}
+                          sampleText={scaleConfig.sampleText}
+                        />
+                      </div>
+                    </TabsContent>
+                  </div>
+                </Tabs>
               </div>
             </div>
           </div>
