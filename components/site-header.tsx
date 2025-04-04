@@ -16,7 +16,7 @@ export function SiteHeader() {
     <header className="bg-background sticky top-0 z-50 flex w-full items-center border-b px-4">
       <div className="flex h-(--header-height) w-full items-center gap-2 ">
         {/* <p className="font-mono text-xl font-semibold">101webtools.com</p> */}
-        <p className="tracking-tighter text-2xl font-bold">
+        <p className="tracking-tighter text-xl font-bold">
           101webtools<span className="text-muted-foreground">.com</span>
         </p>
         <Button
@@ -40,7 +40,7 @@ export function SiteHeader() {
             <span className="pr-1">🎁</span> Request a Tool
           </Link>
         </Button>
-        <Button variant="outline">
+        <Button variant="brandOutline">
           {" "}
           <Star className="text-brand" /> Unlock Pro Features
         </Button>

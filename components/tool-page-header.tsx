@@ -60,23 +60,34 @@ export default function ToolPageHeader({
             : "py-0"
         } transition-all duration-200`}
       >
-        <div className="container mx-auto max-w-10xl">
+        <div className="container mx-auto max-w-[100rem]">
           <div className="flex flex-row w-full items-start justify-between">
             <div
               className={`flex ${
                 isSticky
                   ? "flex-row items-center justify-between gap-4"
-                  : "flex-col gap-4"
+                  : "flex-row items-center justify-between gap-4"
               } mb-4`}
             >
               <div className="flex flex-col">
-                <h1
-                  className={`font-bold tracking-tight ${
-                    isSticky ? "text-2xl mb-0" : "md:text-4xl text-2xl mb-1"
-                  }`}
-                >
-                  {toolsData[toolName].label}
-                </h1>
+                <div className="flex flex-row items-center gap-4">
+                  <h1
+                    className={`font-bold tracking-tight ${
+                      isSticky ? "text-2xl mb-0" : "md:text-4xl text-2xl mb-1"
+                    }`}
+                  >
+                    {toolsData[toolName].label}
+                  </h1>
+                  {toolsData[toolName].badges && (
+                    <div className="flex flex-row gap-2">
+                      {toolsData[toolName].badges.map((badge) => (
+                        <Badge key={badge} variant="outline">
+                          {badge}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 {!isSticky && (
                   <p className="text-muted-foreground text-lg">
                     {toolsData[toolName].description}
@@ -84,7 +95,7 @@ export default function ToolPageHeader({
                 )}
               </div>
 
-              {toolsData[toolName].badges && (
+              {/* {toolsData[toolName].badges && (
                 <div className="flex flex-row gap-2">
                   {toolsData[toolName].badges.map((badge) => (
                     <Badge key={badge} variant="outline">
@@ -92,7 +103,7 @@ export default function ToolPageHeader({
                     </Badge>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
             <div className="flex items-center gap-2">
               {isSticky ? (

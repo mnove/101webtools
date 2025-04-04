@@ -11,6 +11,8 @@ const buttonVariants = cva(
       variant: {
         brand:
           "bg-brand dark:text-primary-foreground shadow-xs hover:bg-brand/90",
+        brandOutline:
+          "border  bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 border-brand/50 dark:hover:bg-input/50",
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:

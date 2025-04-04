@@ -173,7 +173,7 @@ export default function NanoidGenerator() {
   const collisionData = generateCollisionProbabilityData();
 
   return (
-    <div className="w-full py-10">
+    <div className=" py-10 container mx-auto max-w-4xl">
       <div>
         <div className="space-y-6">
           <div className="space-y-2">

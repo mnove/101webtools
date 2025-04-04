@@ -325,7 +325,7 @@ export default function BarcodeGenerator() {
   const formatDescription = barcodeFormats[currentFormat].description;
 
   return (
-    <div className="">
+    <div className="container mx-auto max-w-4xl">
       <div>
         <div className="space-y-6">
           <Form {...form}>

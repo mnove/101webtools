@@ -31,7 +31,6 @@ import {
 
 import {
   TypeScaleFormValues,
-  calculateSize,
   fontFamilies,
   fontScales,
   generateCssCode,
@@ -47,7 +46,6 @@ interface TypeScaleFormProps {
 export function TypeScaleForm({
   form,
   onReset,
-  onSubmit,
   scaleConfig,
 }: TypeScaleFormProps) {
   // Get current scale's ratio
