@@ -10,6 +10,11 @@ import { TypeScaleForm } from "./typescale-form";
 import { ScalePreview } from "./scale-preview";
 import { SamplePagesPreview } from "./sample-pages-preview";
 import { TypeScaleFormValues, fontScales, typeScaleFormSchema } from "./utils";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 
 export default function TypeScaleGenerator() {
   // Initialize form with default values
@@ -65,21 +70,42 @@ export default function TypeScaleGenerator() {
               scaleConfig={scaleConfig}
             />
 
-            {/* 2. Scale Preview Panel - Middle Column */}
-            <ScalePreview
-              fontFamily={scaleConfig.fontFamily}
-              baseSize={scaleConfig.baseSize}
-              scaleRatio={scaleRatio}
-              sampleText={scaleConfig.sampleText}
-            />
-
-            {/* 3. Sample Tabs - Right Column */}
-            <SamplePagesPreview
-              fontFamily={scaleConfig.fontFamily}
-              baseSize={scaleConfig.baseSize}
-              scaleRatio={scaleRatio}
-              sampleText={scaleConfig.sampleText}
-            />
+            {/* <div className="col-span-10 flex w-full ">
+              <ScalePreview
+                fontFamily={scaleConfig.fontFamily}
+                baseSize={scaleConfig.baseSize}
+                scaleRatio={scaleRatio}
+                sampleText={scaleConfig.sampleText}
+              />
+              <SamplePagesPreview
+                fontFamily={scaleConfig.fontFamily}
+                baseSize={scaleConfig.baseSize}
+                scaleRatio={scaleRatio}
+                sampleText={scaleConfig.sampleText}
+              />
+            </div> */}
+            <ResizablePanelGroup
+              direction="horizontal"
+              className="col-span-10 min-h-[200px] w-full  "
+            >
+              <ResizablePanel defaultSize={50}>
+                <ScalePreview
+                  fontFamily={scaleConfig.fontFamily}
+                  baseSize={scaleConfig.baseSize}
+                  scaleRatio={scaleRatio}
+                  sampleText={scaleConfig.sampleText}
+                />
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={50}>
+                <SamplePagesPreview
+                  fontFamily={scaleConfig.fontFamily}
+                  baseSize={scaleConfig.baseSize}
+                  scaleRatio={scaleRatio}
+                  sampleText={scaleConfig.sampleText}
+                />
+              </ResizablePanel>
+            </ResizablePanelGroup>
           </div>
         </form>
       </Form>

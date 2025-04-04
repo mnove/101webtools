@@ -22,7 +22,7 @@ export function SamplePagesPreview({
   );
 
   return (
-    <div className="col-span-1 md:col-span-5 max-h-[1000px]">
+    <div className=" w-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-medium uppercase font-mono text-muted-foreground">
           Sample Pages

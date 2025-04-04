@@ -15,7 +15,7 @@ export function ScalePreview({
   sampleText,
 }: ScalePreviewProps) {
   return (
-    <div className="col-span-1 md:col-span-5 bg-muted/50 max-h-[1000px] border-l">
+    <div className="bg-muted/50 max-h-[1000px] border-l w-full">
       <div className="border-b p-2">
         <h3 className="text-sm font-medium uppercase font-mono text-muted-foreground">
           Type Scale Preview
@@ -23,7 +23,7 @@ export function ScalePreview({
       </div>
       <div className=" shadow-sm p-6 h-full whitespace-nowrap overflow-y-hidden relative ">
         <div className="space-y-4" style={{ fontFamily }}>
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               h1 ({calculateSize(baseSize, scaleRatio, 5)}px)
             </div>
@@ -38,7 +38,7 @@ export function ScalePreview({
             </div>
           </div>
 
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               h2 ({calculateSize(baseSize, scaleRatio, 4)}px)
             </div>
@@ -52,7 +52,7 @@ export function ScalePreview({
             </div>
           </div>
 
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               h3 ({calculateSize(baseSize, scaleRatio, 3)}px)
             </div>
@@ -66,7 +66,7 @@ export function ScalePreview({
             </div>
           </div>
 
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               h4 ({calculateSize(baseSize, scaleRatio, 2)}px)
             </div>
@@ -80,7 +80,7 @@ export function ScalePreview({
             </div>
           </div>
 
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               h5 ({calculateSize(baseSize, scaleRatio, 1)}px)
             </div>
@@ -94,14 +94,14 @@ export function ScalePreview({
             </div>
           </div>
 
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               paragraph ({baseSize}px)
             </div>
             <p style={{ fontSize: `${baseSize}px` }}>{sampleText}</p>
           </div>
 
-          <div className="space-y-1">
+          <div className="flex flex-row gap-2 items-center">
             <div className="text-xs text-muted-foreground">
               small ({calculateSize(baseSize, scaleRatio, -2)}px)
             </div>
