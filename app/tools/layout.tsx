@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { SiteHeader } from "@/components/site-header";
+import { SiteHeaderTools } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 export default function DashboardLayout({
@@ -10,7 +10,7 @@ export default function DashboardLayout({
   return (
     <div className="[--header-height:calc(--spacing(12))] ">
       <SidebarProvider className="flex flex-col w-auto">
-        <SiteHeader />
+        <SiteHeaderTools />
         <div className="flex flex-1">
           <AppSidebar />
           <SidebarInset className="p-4 relative max-h-[calc(100vh-var(--header-height)-1px)] overflow-hidden">
