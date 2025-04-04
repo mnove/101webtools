@@ -56,8 +56,8 @@ export default function ToolPageHeader({
       <div
         className={`${
           isSticky
-            ? "sticky top-0 left-0 right-0 bg-background/95 backdrop-blur z-50 shadow-md py-2"
-            : "py-4"
+            ? "sticky top-0 left-0 right-0 bg-background/95 backdrop-blur z-50 shadow-md py-0"
+            : "py-0"
         } transition-all duration-200`}
       >
         <div className="container mx-auto max-w-10xl">
@@ -165,7 +165,7 @@ export default function ToolPageHeader({
             </div>
           </div>
 
-          <Separator className={`${isSticky ? "my-2" : "my-4"} w-full h-1`} />
+          <Separator className={`${isSticky ? "my-0" : "my-0"} w-full h-1`} />
         </div>
       </div>
       {isSticky && <div className="h-16" />}{" "}
