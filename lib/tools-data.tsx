@@ -1,4 +1,4 @@
-import { Barcode, IdCard, Text } from "lucide-react";
+import { Barcode, IdCard, Text, Timer } from "lucide-react";
 
 export const toolsData = {
   barcodeGenerator: {
@@ -46,5 +46,15 @@ export const toolsData = {
     category: "Design_Tools",
     url: "/tools/typescale-generator",
     icon: Text,
+  },
+
+  pomodoroTimer: {
+    label: "Pomodoro Timer",
+    description:
+      "A simple and effective Pomodoro timer to boost your productivity",
+    badges: ["Productivity", "Timer"],
+    category: "Productivity_Tools",
+    url: "/tools/pomodoro-timer",
+    icon: Timer,
   },
 };

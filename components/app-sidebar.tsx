@@ -1,6 +1,6 @@
 "use client";
 
-import { Barcode, BookOpen, IdCard } from "lucide-react";
+import { Barcode, BookOpen, IdCard, Timer } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -80,6 +80,17 @@ const data: NavbarData = {
           name: "Typographic Scale Generator",
           url: "/tools/typescale-generator",
           icon: BookOpen,
+        },
+      ],
+    },
+
+    {
+      group: "Productivity",
+      items: [
+        {
+          name: "Pomodoro Timer",
+          url: "/tools/pomodoro-timer",
+          icon: Timer,
         },
       ],
     },
