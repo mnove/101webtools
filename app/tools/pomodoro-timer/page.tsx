@@ -1,4 +1,4 @@
-import { PomodoroTimer } from "@/components/layouts/pomodoro-timer";
+import { PomodoroTimer } from "@/components/layouts/pomodoro-timer/pomodoro-timer";
 import ToolPageHeader from "@/components/tool-page-header";
 import { generateToolMetadata } from "@/lib/generate-metadata";
 import { Metadata } from "next";
