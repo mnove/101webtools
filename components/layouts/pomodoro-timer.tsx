@@ -30,6 +30,7 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Progress } from "../ui/progress";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type TimerMode = "pomodoro" | "shortBreak" | "longBreak";
 
@@ -71,6 +72,8 @@ export const PomodoroTimer = () => {
   const [key, setKey] = React.useState<number>(0); // Used to force reset timer
 
   const [progressInPercent, setProgressInPercent] = React.useState<number>(0);
+
+  const [originalTitle, setOriginalTitle] = React.useState<string>("");
 
   // Initialize the form with current settings
   const settingsForm = useForm<SettingsFormValues>({
@@ -150,6 +153,32 @@ export const PomodoroTimer = () => {
     return () => clearInterval(interval);
   }, [isActive, timeLeft, key]);
 
+  // Capture the original document title when component mounts
+  React.useEffect(() => {
+    const title = document.title;
+    setOriginalTitle(title);
+
+    // Clean up function to restore original title when component unmounts
+    return () => {
+      document.title = title;
+    };
+  }, []);
+
+  // Update the document title when timer is active
+  React.useEffect(() => {
+    if (isActive && timeLeft > 0) {
+      const formattedTime = formatTime(timeLeft);
+      const modePrefix =
+        mode === "pomodoro" ? "🍅" : mode === "shortBreak" ? "☕️" : "🌴";
+      document.title = `${modePrefix} ${formattedTime} - Pomodoro Timer`;
+    } else if (!isActive) {
+      // Reset title when timer is paused
+      if (originalTitle) {
+        document.title = originalTitle;
+      }
+    }
+  }, [timeLeft, isActive, mode, originalTitle]);
+
   // Format time as MM:SS
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
@@ -163,8 +192,10 @@ export const PomodoroTimer = () => {
   const mm = Math.floor((timeLeft % 3600) / 60);
   const ss = timeLeft % 60;
 
+  const isMobile = useIsMobile();
+
   const settings = (
-    <Drawer>
+    <Drawer shouldScaleBackground={isMobile ? false : true} direction="right">
       <DrawerTrigger asChild>
         <Button variant="outline" size="sm">
           <Settings className="mr-2 h-4 w-4" /> Settings
@@ -409,6 +440,17 @@ export const PomodoroTimer = () => {
               <p>Long Break: {timerConfig.longBreak} minutes</p>
             )}
           </div>
+        </div>
+
+        <div className="mt-2">
+          <p className="text-muted-foreground text-xs">
+            Pomodoro Timer is a productivity technique that uses a timer to
+            break work into intervals, traditionally 25 minutes in length,
+            separated by short breaks. The method is named after the Italian
+            word for &quot;tomato,&quot; after the tomato-shaped kitchen timer
+            used by Francesco Cirillo, who developed the technique in the late
+            1980s.
+          </p>
         </div>
       </div>
     </div>

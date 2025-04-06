@@ -1,6 +1,24 @@
 import { Barcode, IdCard, Text, Timer } from "lucide-react";
 
-export const toolsData = {
+type Tool = {
+  label: string;
+  description: string;
+  badges: string[];
+  category: string;
+  url: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+};
+
+export type ToolsData = {
+  [key: string]: Tool;
+};
+
+export type ToolsCategory = {
+  name: string;
+  tools: Tool[];
+};
+
+export const toolsData: ToolsData = {
   barcodeGenerator: {
     label: "Barcode Generator",
     description:

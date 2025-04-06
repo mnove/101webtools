@@ -1,6 +1,5 @@
 "use client";
 
-import { Barcode, BookOpen, IdCard } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -11,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { ToolsData, toolsData } from "@/lib/tools-data";
 import { ModeToggle } from "./mode-toggle";
 import { NavTools } from "./nav-tools";
 
@@ -31,7 +31,7 @@ export type NavbarData = {
     email: string;
     avatar: string;
   };
-  tools: NavbarToolGroup[];
+  tools: ToolsData;
 };
 
 const data: NavbarData = {
@@ -41,49 +41,7 @@ const data: NavbarData = {
     avatar: "/avatars/shadcn.jpg",
   },
 
-  tools: [
-    {
-      group: "ID Generators",
-      items: [
-        {
-          name: "Nano ID Generator",
-          url: "/tools/nanoid-generator",
-          icon: IdCard,
-        },
-        {
-          name: "UUID Generator",
-          url: "/tools/uuid-generator",
-          icon: IdCard,
-        },
-        {
-          name: "ULID Generator",
-          url: "/tools/ulid-generator",
-          icon: IdCard,
-        },
-      ],
-    },
-    {
-      group: "Code Generators",
-      items: [
-        {
-          name: "Barcode Generator",
-          url: "/tools/barcode-generator",
-          icon: Barcode,
-        },
-      ],
-    },
-
-    {
-      group: "Design Tools",
-      items: [
-        {
-          name: "Typographic Scale Generator",
-          url: "/tools/typescale-generator",
-          icon: BookOpen,
-        },
-      ],
-    },
-  ],
+  tools: toolsData,
 };
 
 export function HomepageSidebar({
@@ -100,7 +58,7 @@ export function HomepageSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavTools tools={data.tools} />
+        <NavTools toolsData={data.tools} />
       </SidebarContent>
       <SidebarFooter>
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}

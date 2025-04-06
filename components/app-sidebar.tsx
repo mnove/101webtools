@@ -1,6 +1,5 @@
 "use client";
 
-import { Barcode, BookOpen, IdCard, Timer } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -11,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { toolsData, ToolsData } from "@/lib/tools-data";
 import { ModeToggle } from "./mode-toggle";
 import { NavTools } from "./nav-tools";
 
@@ -31,7 +31,8 @@ export type NavbarData = {
     email: string;
     avatar: string;
   };
-  tools: NavbarToolGroup[];
+  // tools: NavbarToolGroup[];
+  tools: ToolsData;
 };
 
 const data: NavbarData = {
@@ -40,61 +41,60 @@ const data: NavbarData = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
+  //   {
+  //     group: "ID Generators",
+  //     items: [
+  //       {
+  //         name: "Nano ID Generator",
+  //         url: "/tools/nanoid-generator",
+  //         icon: IdCard,
+  //       },
+  //       {
+  //         name: "UUID Generator",
+  //         url: "/tools/uuid-generator",
+  //         icon: IdCard,
+  //       },
+  //       {
+  //         name: "ULID Generator",
+  //         url: "/tools/ulid-generator",
+  //         icon: IdCard,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     group: "Code Generators",
+  //     items: [
+  //       {
+  //         name: "Barcode Generator",
+  //         url: "/tools/barcode-generator",
+  //         icon: Barcode,
+  //       },
+  //     ],
+  //   },
 
-  tools: [
-    {
-      group: "ID Generators",
-      items: [
-        {
-          name: "Nano ID Generator",
-          url: "/tools/nanoid-generator",
-          icon: IdCard,
-        },
-        {
-          name: "UUID Generator",
-          url: "/tools/uuid-generator",
-          icon: IdCard,
-        },
-        {
-          name: "ULID Generator",
-          url: "/tools/ulid-generator",
-          icon: IdCard,
-        },
-      ],
-    },
-    {
-      group: "Code Generators",
-      items: [
-        {
-          name: "Barcode Generator",
-          url: "/tools/barcode-generator",
-          icon: Barcode,
-        },
-      ],
-    },
+  //   {
+  //     group: "Design Tools",
+  //     items: [
+  //       {
+  //         name: "Typographic Scale Generator",
+  //         url: "/tools/typescale-generator",
+  //         icon: BookOpen,
+  //       },
+  //     ],
+  //   },
 
-    {
-      group: "Design Tools",
-      items: [
-        {
-          name: "Typographic Scale Generator",
-          url: "/tools/typescale-generator",
-          icon: BookOpen,
-        },
-      ],
-    },
-
-    {
-      group: "Productivity",
-      items: [
-        {
-          name: "Pomodoro Timer",
-          url: "/tools/pomodoro-timer",
-          icon: Timer,
-        },
-      ],
-    },
-  ],
+  //   {
+  //     group: "Productivity",
+  //     items: [
+  //       {
+  //         name: "Pomodoro Timer",
+  //         url: "/tools/pomodoro-timer",
+  //         icon: Timer,
+  //       },
+  //     ],
+  //   },
+  // ],
+  tools: toolsData,
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -109,7 +109,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavTools tools={data.tools} />
+        <NavTools toolsData={data.tools} />
       </SidebarContent>
       <SidebarFooter>
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
