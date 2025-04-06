@@ -159,9 +159,10 @@ export const PomodoroTimer = () => {
     setOriginalTitle(title);
 
     // Clean up function to restore original title when component unmounts
-    return () => {
-      document.title = title;
-    };
+    //? currently disabled as it is conflicting with navigation changes to other pages and their metadata
+    // return () => {
+    //   document.title = title;
+    // };
   }, []);
 
   // Update the document title when timer is active

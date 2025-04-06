@@ -1,5 +1,7 @@
 import { PomodoroTimer } from "@/components/layouts/pomodoro-timer";
 import ToolPageHeader from "@/components/tool-page-header";
+import { generateToolMetadata } from "@/lib/generate-metadata";
+import { Metadata } from "next";
 
 export default function Page() {
   return (
@@ -9,3 +11,5 @@ export default function Page() {
     </div>
   );
 }
+
+export const metadata: Metadata = generateToolMetadata("pomodoroTimer");
