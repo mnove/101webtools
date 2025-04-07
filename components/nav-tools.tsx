@@ -62,7 +62,7 @@ export function NavTools({ toolsData }: { toolsData: ToolsData }) {
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       {tools.map((toolGroup) => (
-        <div key={toolGroup.group}>
+        <div key={toolGroup.group} className="mt-4">
           <SidebarGroupLabel>{toolGroup.group}</SidebarGroupLabel>
           <SidebarMenu>
             {toolGroup.items.map((item) => (
