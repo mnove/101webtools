@@ -30,6 +30,7 @@ import { TimerConfig } from "./types";
 import { SettingsFormValues, settingsFormSchema } from "./schema";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Switch } from "@/components/ui/switch";
+import { useRef } from "react";
 
 interface SettingsDrawerProps {
   timerConfig: TimerConfig;
@@ -41,6 +42,7 @@ export const SettingsDrawer = ({
   onSettingsSave,
 }: SettingsDrawerProps) => {
   const isMobile = useIsMobile();
+  const drawerRef = useRef<HTMLButtonElement>(null);
 
   // Initialize the form with current settings
   const settingsForm = useForm<SettingsFormValues>({
@@ -50,8 +52,28 @@ export const SettingsDrawer = ({
       shortBreak: timerConfig.shortBreak,
       longBreak: timerConfig.longBreak,
       timerStyle: timerConfig.timerStyle,
+      pomodorosPerCycle: timerConfig.pomodorosPerCycle,
+      autoCycle: timerConfig.autoCycle,
     },
   });
+
+  const handleSaveSettings = (data: SettingsFormValues) => {
+    onSettingsSave(data);
+    // Close drawer after saving
+    drawerRef.current?.click();
+  };
+
+  const handleCancel = () => {
+    // Reset form to default values
+    settingsForm.reset({
+      pomodoro: timerConfig.pomodoro,
+      shortBreak: timerConfig.shortBreak,
+      longBreak: timerConfig.longBreak,
+      timerStyle: timerConfig.timerStyle,
+      pomodorosPerCycle: timerConfig.pomodorosPerCycle,
+      autoCycle: timerConfig.autoCycle,
+    });
+  };
 
   return (
     <Drawer shouldScaleBackground={isMobile ? false : true} direction="right">
@@ -71,7 +93,7 @@ export const SettingsDrawer = ({
 
           <Form {...settingsForm}>
             <form
-              onSubmit={settingsForm.handleSubmit(onSettingsSave)}
+              onSubmit={settingsForm.handleSubmit(handleSaveSettings)}
               className="space-y-6 px-4"
             >
               <FormField
@@ -199,8 +221,10 @@ export const SettingsDrawer = ({
 
               <DrawerFooter className="px-0">
                 <Button type="submit">Save Changes</Button>
-                <DrawerClose asChild>
-                  <Button variant="outline">Cancel</Button>
+                <DrawerClose ref={drawerRef} asChild>
+                  <Button variant="outline" onClick={handleCancel}>
+                    Cancel
+                  </Button>
                 </DrawerClose>
               </DrawerFooter>
             </form>
