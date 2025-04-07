@@ -8,6 +8,7 @@ export interface TimerConfig {
   // New fields for cycle settings
   pomodorosPerCycle: number;
   autoCycle: boolean;
+  playSound: boolean;
 }
 
 export interface CycleState {

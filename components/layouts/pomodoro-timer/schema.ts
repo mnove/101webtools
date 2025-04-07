@@ -9,6 +9,7 @@ export const settingsFormSchema = z.object({
   // New fields for cycle settings
   pomodorosPerCycle: z.number().min(1).max(10),
   autoCycle: z.boolean(),
+  playSound: z.boolean(),
 });
 
 export type SettingsFormValues = z.infer<typeof settingsFormSchema>;

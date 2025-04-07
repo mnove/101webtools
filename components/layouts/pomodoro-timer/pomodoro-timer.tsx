@@ -17,6 +17,7 @@ export const PomodoroTimer = () => {
     timerStyle: "animated",
     pomodorosPerCycle: 4,
     autoCycle: true,
+    playSound: true,
   });
 
   const [timerStyle, setTimerStyle] = React.useState<string>(
@@ -38,7 +39,7 @@ export const PomodoroTimer = () => {
     completedCycles: 0,
   });
 
-  const [play] = useSound("/sounds/rising-pops.mp3", {
+  const [play] = useSound("/sounds/notification-up.mp3", {
     volume: 1,
   });
 
@@ -51,6 +52,7 @@ export const PomodoroTimer = () => {
       timerStyle: data.timerStyle,
       pomodorosPerCycle: data.pomodorosPerCycle,
       autoCycle: data.autoCycle,
+      playSound: data.playSound,
     });
 
     setTimerStyle(data.timerStyle);
@@ -181,7 +183,7 @@ export const PomodoroTimer = () => {
       )}
 
       <div className="min-h-[500px] max-w-[500px] mx-auto">
-        <div className="mb-4 flex items-center justify-between gap-2">
+        <div className="mb-4 flex items-center justify-between gap-2 ">
           <div className="text-sm text-muted-foreground">
             {mode === "pomodoro" && (
               <span>
@@ -210,6 +212,7 @@ export const PomodoroTimer = () => {
         />
 
         <div className="mt-2">
+          <button onClick={() => play()}>Play</button>
           <p className="text-muted-foreground text-xs">
             Pomodoro Timer is a productivity technique that uses a timer to
             break work into intervals, traditionally 25 minutes in length,

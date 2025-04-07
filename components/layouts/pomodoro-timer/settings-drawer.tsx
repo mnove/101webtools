@@ -31,6 +31,7 @@ import { SettingsFormValues, settingsFormSchema } from "./schema";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Switch } from "@/components/ui/switch";
 import { useRef } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface SettingsDrawerProps {
   timerConfig: TimerConfig;
@@ -54,6 +55,7 @@ export const SettingsDrawer = ({
       timerStyle: timerConfig.timerStyle,
       pomodorosPerCycle: timerConfig.pomodorosPerCycle,
       autoCycle: timerConfig.autoCycle,
+      playSound: timerConfig.playSound,
     },
   });
 
@@ -72,6 +74,7 @@ export const SettingsDrawer = ({
       timerStyle: timerConfig.timerStyle,
       pomodorosPerCycle: timerConfig.pomodorosPerCycle,
       autoCycle: timerConfig.autoCycle,
+      playSound: timerConfig.playSound,
     });
   };
 
@@ -82,15 +85,15 @@ export const SettingsDrawer = ({
           <Settings className="mr-2 h-4 w-4" /> Settings
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
-        <div className="mx-auto w-full max-w-sm">
-          <DrawerHeader>
-            <DrawerTitle>Timer Settings</DrawerTitle>
-            <DrawerDescription>
-              Customize your Pomodoro timer settings.
-            </DrawerDescription>
-          </DrawerHeader>
+      <DrawerContent className="h-full max-h-[100vh]">
+        <DrawerHeader>
+          <DrawerTitle>Timer Settings</DrawerTitle>
+          <DrawerDescription>
+            Customize your Pomodoro timer settings.
+          </DrawerDescription>
+        </DrawerHeader>
 
+        <ScrollArea className="h-full">
           <Form {...settingsForm}>
             <form
               onSubmit={settingsForm.handleSubmit(handleSaveSettings)}
@@ -219,6 +222,27 @@ export const SettingsDrawer = ({
                 )}
               />
 
+              <FormField
+                control={settingsForm.control}
+                name="playSound"
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <div className="space-y-0.5">
+                      <FormLabel>Play Sound</FormLabel>
+                      <FormDescription>
+                        Play sound when timer ends
+                      </FormDescription>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
               <DrawerFooter className="px-0">
                 <Button type="submit">Save Changes</Button>
                 <DrawerClose ref={drawerRef} asChild>
@@ -229,7 +253,7 @@ export const SettingsDrawer = ({
               </DrawerFooter>
             </form>
           </Form>
-        </div>
+        </ScrollArea>
       </DrawerContent>
     </Drawer>
   );

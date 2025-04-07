@@ -55,17 +55,17 @@ export default function ToolPageHeader({
         className={`sticky top-0 left-0 right-0 bg-background/95 backdrop-blur z-50 shadow-md py-0transition-all duration-200`}
       >
         <div className="container mx-auto max-w-[100rem]">
-          <div className="flex flex-row w-full items-start justify-between">
+          <div className="flex flex-row w-full items-start justify-between flex-wrap">
             <div
-              className={`flex flex-row items-center justify-between gap-4 mb-4`}
+              className={`flex flex-row items-center justify-between gap-4 mb-4 flex-wrap`}
             >
               <div className="flex flex-col">
-                <div className="flex flex-row items-center gap-4">
+                <div className="flex flex-row items-center gap-4 flex-wrap">
                   <h1 className={`font-bold tracking-tight text-2xl mb-0`}>
                     {toolsData[toolName].label}
                   </h1>
                   {toolsData[toolName].badges && (
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-row gap-2 flex-wrap">
                       {toolsData[toolName].badges.map((badge) => (
                         <Badge key={badge} variant="outline">
                           {badge}
@@ -79,16 +79,6 @@ export default function ToolPageHeader({
                   {toolsData[toolName].description}
                 </p>
               </div>
-
-              {/* {toolsData[toolName].badges && (
-                <div className="flex flex-row gap-2">
-                  {toolsData[toolName].badges.map((badge) => (
-                    <Badge key={badge} variant="outline">
-                      {badge}
-                    </Badge>
-                  ))}
-                </div>
-              )} */}
             </div>
             <div className="flex items-center gap-2">
               <TooltipProvider>

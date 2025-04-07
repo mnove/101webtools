@@ -45,7 +45,7 @@ export const TimerDisplay = ({
       )}
     >
       {/* Mode Selection */}
-      <div className="flex gap-2 mb-8">
+      <div className="flex gap-2 mb-8 flex-wrap">
         <div
           className={cn(
             "flex items-center px-4 py-2 rounded-md text-white text-sm font-semibold cursor-pointer transition-colors transition-duration-200",
@@ -77,7 +77,7 @@ export const TimerDisplay = ({
       </div>
 
       {/* Timer Display */}
-      <div className="text-8xl font-mono font-bold my-10">
+      <div className="text-5xl md:text-8xl font-mono font-bold my-10">
         {timerStyle === "animated" ? (
           <div>
             <NumberFlowGroup>

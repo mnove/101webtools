@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { HomepageSidebar } from "@/components/homepage-sidebar";
 import { SiteHeaderHome } from "@/components/site-header";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -14,6 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main className="flex flex-col items-center justify-between mx-auto max-w-6xl">
           <>{children}</>
         </main>
+        <Footer className="max-w-6xl mx-auto" />
       </SidebarProvider>
     </div>
   );
