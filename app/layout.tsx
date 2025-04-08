@@ -39,7 +39,21 @@ export const metadata: Metadata = {
   ],
   creator: "101webtools",
   publisher: "101webtools",
-
+  metadataBase: new URL("https://101webtools.com"),
+  // openGraph: {
+  //   title: "101webtools",
+  //   description: "Free Online Tools for Developers and Designers",
+  //   url: "https://101webtools.com",
+  //   siteName: "101webtools",
+  //   images: [
+  //     {
+  //       url: "/og-image.png",
+  //       width: 1200,
+  //       height: 630,
+  //       alt: "101webtools - Free Online Tools for Developers and Designers",
+  //     },
+  //   ],
+  // },
   manifest: "/manifest.json",
 };
 
