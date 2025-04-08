@@ -1,6 +1,8 @@
 {
   "name": "101webtools",
   "short_name": "101tools",
+  "description": "A collection of web tools for developers and designers.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
