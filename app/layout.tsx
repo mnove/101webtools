@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "101webtools",
-  description: "101webtools - Free Online Tools for Developers",
+  description: "101webtools - Free Online Tools for Developers and Designers",
   keywords: [
     "101webtools",
     "free online tools",
