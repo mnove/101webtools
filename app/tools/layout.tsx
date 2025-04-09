@@ -14,8 +14,6 @@ export default function DashboardLayout({
         <div className="flex flex-1">
           <AppSidebar />
           <SidebarInset className="p-4 relative max-h-[calc(100vh-var(--header-height)-1px)] overflow-hidden">
-            {/* <InsetHeader /> */}
-
             <ScrollAreaPrimitive.Root className="overflow-hidden h-full">
               <ScrollAreaPrimitive.Viewport className="w-full h-full rounded-[inherit]">
                 {children}

@@ -85,7 +85,7 @@ export default function TypeScaleGenerator() {
               />
             </div> */}
             <ResizablePanelGroup
-              direction="horizontal"
+              direction="vertical"
               className="col-span-10 min-h-[200px] w-full  "
             >
               <ResizablePanel defaultSize={50}>

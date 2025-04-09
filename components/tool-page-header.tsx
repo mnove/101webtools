@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { siteConfig } from "@/config/site";
 import { toolsData } from "@/lib/tools-data";
-import { Bug, Megaphone } from "lucide-react";
+import { Bug, Info, Megaphone, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -13,6 +13,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function ToolPageHeader({
   toolName,
@@ -30,6 +32,7 @@ export default function ToolPageHeader({
   console.log("toolReportUrl", toolReportUrl.href);
   console.log("toolFeedbackUrl", toolFeedbackUrl.href);
 
+  const isMobile = useIsMobile();
   // const [isSticky, setIsSticky] = useState(false);
   // const headerRef = useRef<HTMLDivElement>(null);
 
@@ -48,6 +51,108 @@ export default function ToolPageHeader({
   //   return () => observer.disconnect();
   // }, []);
 
+  const toolDescription = (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <div>
+            <p className="text-muted-foreground text-lg leading-none hidden xl:block">
+              {toolsData[toolName].description}
+            </p>
+            <div className="block xl:hidden">
+              <Button size="sm" variant="outline" className="group">
+                <Info className="w-4 h-4 " />
+              </Button>
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>{toolsData[toolName].description}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+
+  const mobileMenu = (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" size="sm">
+          <MoreHorizontal />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80 p-0">
+        <div className="grid gap-0 p-0">
+          <div className="space-y-2  rounded-md p-4 ">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider leading-none">
+              Info
+            </p>
+            <p className="text-sm">{toolsData[toolName].description}</p>
+
+            {toolsData[toolName].badges && (
+              <div className="flex flex-row gap-2 flex-wrap">
+                {toolsData[toolName].badges.map((badge) => (
+                  <Badge key={badge} variant="outline">
+                    {badge}
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Separator className="my-0" />
+          <Link
+            href={toolFeedbackComposedUrl}
+            target="_blank"
+            className="flex items-center gap-4 hover:bg-muted/50 p-4 cursor-pointer text-yellow-400"
+          >
+            <Megaphone className="w-4 h-4 group-hover:text-yellow-400 transition-colors" />
+            <h4 className="font-medium leading-none">Give Feedback</h4>
+          </Link>
+
+          <Link
+            href={toolReportComposedUrl}
+            target="_blank"
+            className="flex items-center gap-4 hover:bg-muted/50 p-4 cursor-pointer text-red-400"
+          >
+            <Bug className="w-4 h-4  group-hover:text-red-400 transition-colors " />
+            <h4 className="font-medium leading-none">Report a Bug</h4>
+          </Link>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+
+  const feedbackButtons = (
+    <div className="flex items-center gap-2">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            {" "}
+            <Button size="sm" variant="outline" className="group" asChild>
+              <Link href={toolReportComposedUrl} target="_blank">
+                <Bug className="w-4 h-4  group-hover:text-red-400 transition-colors " />
+              </Link>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Report a bug</p>
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger>
+            {" "}
+            <Button size="sm" variant="outline" className="group" asChild>
+              <Link href={toolFeedbackComposedUrl} target="_blank">
+                <Megaphone className="w-4 h-4 group-hover:text-yellow-400 transition-colors" />
+              </Link>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Give feedback</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
+  );
   return (
     <>
       <div className="h-1 top-0 w-full" /> {/* Observer target */}
@@ -61,66 +166,38 @@ export default function ToolPageHeader({
             >
               <div className="flex flex-col">
                 <div className="flex flex-row items-center gap-4 flex-wrap">
-                  <h1 className={`font-bold tracking-tight text-2xl mb-0`}>
+                  <h1
+                    className={`font-bold tracking-tight text-2xl mb-0 leading-none`}
+                  >
                     {toolsData[toolName].label}
                   </h1>
-                  {toolsData[toolName].badges && (
-                    <div className="flex flex-row gap-2 flex-wrap">
-                      {toolsData[toolName].badges.map((badge) => (
-                        <Badge key={badge} variant="outline">
-                          {badge}
-                        </Badge>
-                      ))}
-                    </div>
+                  {isMobile ? (
+                    <>{mobileMenu}</>
+                  ) : (
+                    <>
+                      <div className="[@media(max-height:980px)]:block hidden  ">
+                        {toolDescription}
+                      </div>
+                      {toolsData[toolName].badges && (
+                        <div className="flex flex-row gap-2 flex-wrap">
+                          {toolsData[toolName].badges.map((badge) => (
+                            <Badge key={badge} variant="outline">
+                              {badge}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
 
-                <p className="text-muted-foreground text-lg">
-                  {toolsData[toolName].description}
-                </p>
+                <div className="[@media(max-height:980px)]:hidden block">
+                  {toolDescription}
+                </div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    {" "}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="group"
-                      asChild
-                    >
-                      <Link href={toolReportComposedUrl} target="_blank">
-                        <Bug className="w-4 h-4  group-hover:text-red-400 transition-colors " />
-                      </Link>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Report a bug</p>
-                  </TooltipContent>
-                </Tooltip>
 
-                <Tooltip>
-                  <TooltipTrigger>
-                    {" "}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="group"
-                      asChild
-                    >
-                      <Link href={toolFeedbackComposedUrl} target="_blank">
-                        <Megaphone className="w-4 h-4 group-hover:text-yellow-400 transition-colors" />
-                      </Link>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Give feedback</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+            {!isMobile && <>{feedbackButtons}</>}
           </div>
 
           <Separator className={`my-0 w-full h-1`} />
