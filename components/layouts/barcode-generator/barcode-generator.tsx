@@ -35,9 +35,7 @@ import {
   ChevronDown,
   Clipboard,
   Download,
-  Image as ImageIcon,
   Info,
-  RefreshCw,
   RotateCcw,
 } from "lucide-react";
 import * as React from "react";

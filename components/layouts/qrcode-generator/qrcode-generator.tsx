@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import QRCodeStyling from "qr-code-styling";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -26,8 +24,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { ChevronDown, Clipboard, Download, RotateCcw } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ChevronDown, Clipboard, Download, RotateCcw } from "lucide-react";
+import QRCodeStyling from "qr-code-styling";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -73,11 +73,11 @@ const qrCodeFormSchema = z.object({
 type QRCodeFormValues = z.infer<typeof qrCodeFormSchema>;
 
 export default function QrcodeGenerator() {
-  const qrRef = useRef(null);
+  const qrRef = useRef<HTMLDivElement | null>(null);
   const [qrCode, setQrCode] = useState<QRCodeStyling | null>(null);
-  const [qrImageUrl, setQrImageUrl] = useState<string | null>(null);
+  //   const [qrImageUrl, setQrImageUrl] = useState<string | null>(null);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-  const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false);
+  //   const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false);
   const shouldGenerateImage = useRef<boolean>(false);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
   const lastFormValues = useRef<QRCodeFormValues | null>(null);
@@ -228,7 +228,7 @@ export default function QrcodeGenerator() {
     form.reset();
     setUploadedImage(null);
 
-    const defaultValues = {
+    const defaultValues: QRCodeFormValues = {
       url: "https://101webtools.com",
       width: 300,
       height: 300,
@@ -615,7 +615,7 @@ export default function QrcodeGenerator() {
                   variant="brand"
                   size="sm"
                   onClick={downloadQrCode}
-                  disabled={!qrCode || isGeneratingImage}
+                  disabled={!qrCode}
                 >
                   <Download className="h-3 w-3 mr-1" /> Download{" "}
                   {form.watch("fileExtension").toUpperCase()}
