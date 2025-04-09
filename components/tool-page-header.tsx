@@ -126,7 +126,7 @@ export default function ToolPageHeader({
           <Separator className={`my-0 w-full h-1`} />
         </div>
       </div>
-      <div className="h-16" />
+      <div className="h-4" />
       {/* Space filler when header is sticky */}
     </>
   );

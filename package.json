@@ -38,6 +38,7 @@
     "nanoid-dictionary": "^4.3.0",
     "next": "15.2.4",
     "next-themes": "^0.4.6",
+    "qr-code-styling": "^1.9.1",
     "react": "^19.0.0",
     "react-barcode": "^1.6.1",
     "react-colorful": "^5.6.1",

@@ -133,7 +133,6 @@ export default function BarcodeGenerator() {
   const form = useForm<BarcodeFormValues>({
     mode: "onChange",
     reValidateMode: "onBlur",
-
     resolver: zodResolver(barcodeFormSchema),
     defaultValues: {
       value: "123456789012",
@@ -165,6 +164,7 @@ export default function BarcodeGenerator() {
   };
 
   const formatWatch = form.watch("format");
+
   // Generate example value when format changes
   React.useEffect(() => {
     const format = form.watch("format");
@@ -173,26 +173,47 @@ export default function BarcodeGenerator() {
     form.trigger("value");
   }, [formatWatch, form]);
 
-  const onSubmit = (values: BarcodeFormValues) => {
-    // Additional validation before generating the barcode
-    const format = values.format;
-    const validator = barcodeFormats[format].validator;
-    const validationResult = validator(values.value);
+  // Use individual form fields instead of watching all fields
+  const value = form.watch("value");
+  const width = form.watch("width");
+  const height = form.watch("height");
+  const displayValue = form.watch("displayValue");
+  const background = form.watch("background");
+  const lineColor = form.watch("lineColor");
+  const margin = form.watch("margin");
+  const fontSize = form.watch("fontSize");
+  const textPosition = form.watch("textPosition");
+  const textMargin = form.watch("textMargin");
 
-    if (validationResult !== true) {
-      form.setError("value", {
-        type: "manual",
-        message: validationResult as string,
-      });
-      return;
+  // Automatically update the barcode whenever specific form values change
+  React.useEffect(() => {
+    // Only update if the form is valid to prevent invalid barcode generation attempts
+    if (form.formState.isValid) {
+      const currentValues = form.getValues();
+
+      // Additional validation before generating the barcode
+      const format = currentValues.format;
+      const validator = barcodeFormats[format].validator;
+      const validationResult = validator(currentValues.value);
+
+      if (validationResult === true) {
+        setBarcodeConfig(currentValues);
+      }
     }
-
-    setBarcodeConfig(values);
-    toast("Barcode generated", {
-      description: `Format: ${values.format}, Value: ${values.value}`,
-      duration: 2000,
-    });
-  };
+  }, [
+    value,
+    formatWatch,
+    width,
+    height,
+    displayValue,
+    background,
+    lineColor,
+    margin,
+    fontSize,
+    textPosition,
+    textMargin,
+    form,
+  ]);
 
   const copyBarcodeAsSVG = () => {
     // Get the SVG element
@@ -317,25 +338,20 @@ export default function BarcodeGenerator() {
 
   // Get the current format's validation pattern for display
   const currentFormat = form.watch("format") as BarcodeFormat;
-
-  // TODO
-  // const currentPattern = barcodeFormats[currentFormat].pattern
-  //   ?.toString()
-  //   .replace(/[\/^$]/g, "");
   const formatDescription = barcodeFormats[currentFormat].description;
 
   return (
-    <div className="container mx-auto max-w-4xl">
-      <div>
-        <div className="space-y-6">
+    <div className="mx-auto max-w-6xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="col-span-2 lg:col-span-1">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form className="space-y-6">
               <div className="grid grid-cols-8 items-start w-full gap-6 mb-4">
                 <FormField
                   control={form.control}
                   name="value"
                   render={({ field }) => (
-                    <FormItem className="col-span-8 md:col-span-6">
+                    <FormItem className="col-span-8 lg:col-span-6">
                       <FormLabel>Barcode Value</FormLabel>
                       <FormControl>
                         <Input
@@ -363,7 +379,7 @@ export default function BarcodeGenerator() {
                   control={form.control}
                   name="format"
                   render={({ field }) => (
-                    <FormItem className="w-full col-span-8 md:col-span-2">
+                    <FormItem className="w-full col-span-8 lg:col-span-2">
                       <FormLabel>Barcode Format</FormLabel>
                       <Select
                         onValueChange={(value) => {
@@ -415,7 +431,7 @@ export default function BarcodeGenerator() {
                   <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:-rotate-180" />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <FormField
                       control={form.control}
                       name="width"
@@ -557,10 +573,10 @@ export default function BarcodeGenerator() {
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   {" "}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <>
                     <div className="space-y-6">
                       {form.watch("displayValue") && (
-                        <>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                           <FormField
                             control={form.control}
                             name="fontSize"
@@ -639,127 +655,88 @@ export default function BarcodeGenerator() {
                               </FormItem>
                             )}
                           />
-                        </>
+                        </div>
                       )}
                     </div>
-                  </div>
+                  </>
                 </CollapsibleContent>
               </Collapsible>
 
               <div className="flex flex-row gap-2 w-full">
-                <Button type="button" variant="outline" onClick={handleReset}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleReset}
+                  className="w-fit"
+                >
                   <RotateCcw className="mr-1 h-4 w-4" />
                   Reset
                 </Button>
-
-                <div className="w-full">
-                  <Button
-                    variant="brand"
-                    type="submit"
-                    className="w-full"
-                    disabled={
-                      !form.formState.isValid || form.formState.isSubmitting
-                    }
-                  >
-                    <RefreshCw className="mr-1 h-4 w-4" /> Generate Barcode
-                  </Button>
-                </div>
               </div>
             </form>
           </Form>
-
-          <div className="pt-6 border-t">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-medium">Generated Barcode:</h3>
-              <Button variant="outline" size="sm" onClick={copyBarcodeAsSVG}>
-                <Clipboard className="h-3 w-3 mr-1" /> Copy as SVG
-              </Button>
-            </div>
-            <div className="flex justify-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg barcode-container">
-              {form.formState.isValid ? (
-                <Barcode
-                  value={barcodeConfig.value}
-                  format={barcodeConfig.format}
-                  width={barcodeConfig.width}
-                  height={barcodeConfig.height}
-                  displayValue={barcodeConfig.displayValue}
-                  background={barcodeConfig.background}
-                  lineColor={barcodeConfig.lineColor}
-                  margin={barcodeConfig.margin}
-                  fontSize={barcodeConfig.fontSize}
-                  textPosition={barcodeConfig.textPosition}
-                  textMargin={barcodeConfig.textMargin}
-                />
-              ) : (
-                <div className="text-center text-muted-foreground p-12">
-                  Please provide a valid barcode value
+        </div>
+        <div className="col-span-2 lg:col-span-1">
+          <div className="space-y-6">
+            <div className="pt-6 border-t lg:border-t-0 lg:pt-0">
+              <div className="flex justify-between items-start mb-4 lg:items-center">
+                <h3 className="font-medium">Generated Barcode:</h3>
+                <div className="flex gap-2 flex-wrap">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={copyBarcodeAsSVG}
+                  >
+                    <Clipboard className="h-3 w-3 mr-1" /> Copy as SVG
+                  </Button>
+                  <Button
+                    variant="brand"
+                    size="sm"
+                    onClick={downloadBarcodeImage}
+                    disabled={!barcodeImageUrl || isGeneratingImage}
+                  >
+                    <Download className="h-3 w-3 mr-1" /> Download PNG
+                  </Button>
                 </div>
-              )}
-            </div>
-
-            {/* Rendered barcode image section */}
-            <div className="mt-6 pt-4 border-t">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-medium">Downloadable Image:</h3>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={downloadBarcodeImage}
-                  disabled={!barcodeImageUrl || isGeneratingImage}
-                >
-                  <Download className="h-3 w-3 mr-1" /> Download PNG
-                </Button>
               </div>
-              <div className="flex justify-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                {isGeneratingImage ? (
-                  <div className="flex flex-col items-center justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-gray-100 mb-2"></div>
-                    <p className="text-sm text-muted-foreground">
-                      Generating image...
-                    </p>
-                  </div>
-                ) : barcodeImageUrl ? (
-                  <div className="flex flex-col items-center">
-                    <img
-                      src={barcodeImageUrl}
-                      alt="Barcode as PNG"
-                      className="max-w-full"
-                    />
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Right-click on the image to save it, or use the download
-                      button above
-                    </p>
-                  </div>
+              <div className="flex justify-center p-4 bg-gray-50 dark:bg-gray-900 rounded-lg barcode-container">
+                {form.formState.isValid ? (
+                  <Barcode
+                    value={barcodeConfig.value}
+                    format={barcodeConfig.format}
+                    width={barcodeConfig.width}
+                    height={barcodeConfig.height}
+                    displayValue={barcodeConfig.displayValue}
+                    background={barcodeConfig.background}
+                    lineColor={barcodeConfig.lineColor}
+                    margin={barcodeConfig.margin}
+                    fontSize={barcodeConfig.fontSize}
+                    textPosition={barcodeConfig.textPosition}
+                    textMargin={barcodeConfig.textMargin}
+                  />
                 ) : (
-                  <div className="flex flex-col items-center justify-center py-8">
-                    <ImageIcon className="h-8 w-8 text-muted-foreground mb-2" />
-                    <p className="text-sm text-muted-foreground">
-                      {form.formState.isValid
-                        ? "Generate a barcode to create a downloadable image"
-                        : "Please provide valid barcode data first"}
-                    </p>
+                  <div className="text-center text-muted-foreground p-12">
+                    Please provide a valid barcode value
                   </div>
                 )}
               </div>
             </div>
           </div>
         </div>
-
-        <div className="flex flex-col space-y-4 text-xs text-muted-foreground mt-4">
-          <div className="w-full">
-            <p>
-              Barcodes are machine-readable representations of data, commonly
-              used for product identification in retail and inventory
-              management.
-            </p>
-            <p className="mt-1">
-              Different formats have specific requirements for the input data
-              format. For example, EAN-13 requires 13 digits, while Code 128 can
-              encode alphanumeric data.
-            </p>
-          </div>
-        </div>
       </div>
+      <div className="flex flex-col space-y-4 text-xs text-muted-foreground mt-4">
+        <div className="w-full">
+          <p>
+            Barcodes are machine-readable representations of data, commonly used
+            for product identification in retail and inventory management.
+          </p>
+          <p className="mt-1">
+            Different formats have specific requirements for the input data
+            format. For example, EAN-13 requires 13 digits, while Code 128 can
+            encode alphanumeric data.
+          </p>
+        </div>
+      </div>{" "}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Barcode, IdCard, Text, Timer } from "lucide-react";
+import { Barcode, IdCard, QrCode, Text, Timer } from "lucide-react";
 
 type Tool = {
   label: string;
@@ -28,6 +28,17 @@ export const toolsData: ToolsData = {
     url: "/tools/barcode-generator",
     icon: Barcode,
   },
+
+  qrcodeGenerator: {
+    label: "QR Code Generator",
+    description:
+      "Generate QR codes with customizable options and download them as images",
+    badges: ["QR Code"],
+    category: "Code_Generators",
+    url: "/tools/qrcode-generator",
+    icon: QrCode,
+  },
+
   nanoidGenerator: {
     label: "Nano ID Generator",
     description: "Generate random IDs with customizable length and alphabet",
