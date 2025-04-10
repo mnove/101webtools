@@ -19,6 +19,36 @@ export type ToolsCategory = {
 };
 
 export const toolsData: ToolsData = {
+  javascriptMinifier: {
+    label: "JavaScript Minifier",
+    description:
+      "Minify your JavaScript code to reduce file size and improve load times",
+    badges: ["JavaScript", "Minifier"],
+    category: "Code_Minifiers",
+    url: "/tools/javascript-minifier",
+    icon: Text,
+  },
+
+  cssMinifier: {
+    label: "CSS Minifier",
+    description:
+      "Minify your CSS code to reduce file size and improve load times",
+    badges: ["CSS", "Minifier"],
+    category: "Code_Minifiers",
+    url: "/tools/css-minifier",
+    icon: Text,
+  },
+
+  htmlMinifier: {
+    label: "HTML Minifier",
+    description:
+      "Minify your HTML code to reduce file size and improve load times",
+    badges: ["HTML", "Minifier"],
+    category: "Code_Minifiers",
+    url: "/tools/html-minifier",
+    icon: Text,
+  },
+
   barcodeGenerator: {
     label: "Barcode Generator",
     description:
