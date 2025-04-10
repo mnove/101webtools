@@ -19,6 +19,26 @@ export type ToolsCategory = {
 };
 
 export const toolsData: ToolsData = {
+  base64EncoderDecoder: {
+    label: "Base64 Encoder/Decoder",
+    description:
+      "Encode or decode Base64 strings for data transmission and storage",
+    badges: ["Base64", "Encoder", "Decoder"],
+    category: "Text_Manipulation",
+    url: "/tools/base64-encoder-decoder",
+    icon: Text,
+  },
+
+  urlEncoderDecoder: {
+    label: "URL Encoder/Decoder",
+    description:
+      "Encode or decode URLs to ensure they are safe for transmission over the internet",
+    badges: ["URL", "Encoder", "Decoder"],
+    category: "Text_Manipulation",
+    url: "/tools/url-encoder-decoder",
+    icon: Text,
+  },
+
   javascriptMinifier: {
     label: "JavaScript Minifier",
     description:
