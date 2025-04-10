@@ -74,7 +74,7 @@ export default function ToolPageHeader({
   const mobileMenu = (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="ghost" size="icon">
           <MoreHorizontal />
         </Button>
       </PopoverTrigger>

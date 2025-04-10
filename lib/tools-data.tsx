@@ -19,6 +19,15 @@ export type ToolsCategory = {
 };
 
 export const toolsData: ToolsData = {
+  passwordGenerator: {
+    label: "Password Generator",
+    description:
+      "Generate strong and secure passwords with customizable options",
+    badges: ["Password", "Generator"],
+    category: "Security_Tools",
+    url: "/tools/password-generator",
+    icon: Text,
+  },
   binaryToTextConverter: {
     label: "Binary to Text Converter",
     description:
