@@ -19,6 +19,16 @@ export type ToolsCategory = {
 };
 
 export const toolsData: ToolsData = {
+  binaryToTextConverter: {
+    label: "Binary to Text Converter",
+    description:
+      "Convert binary data to text and vice versa for easy readability",
+    badges: ["Binary", "Text", "Converter"],
+    category: "Text_Manipulation",
+    url: "/tools/binary-to-text-converter",
+    icon: Text,
+  },
+
   base64EncoderDecoder: {
     label: "Base64 Encoder/Decoder",
     description:
