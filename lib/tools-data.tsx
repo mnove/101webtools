@@ -19,6 +19,66 @@ export type ToolsCategory = {
 };
 
 export const toolsData: ToolsData = {
+  md5Encrypt: {
+    label: "MD5 Encrypt",
+    description:
+      "Encrypt your text using the MD5 hashing algorithm for secure storage",
+    badges: ["MD5", "Encryption"],
+    category: "Encryption_Tools",
+    url: "/tools/md5-encrypt",
+    icon: Text,
+  },
+
+  sha1Encrypt: {
+    label: "SHA1 Encrypt",
+    description:
+      "Encrypt your text using the SHA1 hashing algorithm for secure storage",
+    badges: ["SHA1", "Encryption"],
+    category: "Encryption_Tools",
+    url: "/tools/sha1-encrypt",
+    icon: Text,
+  },
+
+  sha224Encrypt: {
+    label: "SHA224 Encrypt",
+    description:
+      "Encrypt your text using the SHA224 hashing algorithm for secure storage",
+    badges: ["SHA224", "Encryption"],
+    category: "Encryption_Tools",
+    url: "/tools/sha224-encrypt",
+    icon: Text,
+  },
+
+  sha256Encrypt: {
+    label: "SHA256 Encrypt",
+    description:
+      "Encrypt your text using the SHA256 hashing algorithm for secure storage",
+    badges: ["SHA256", "Encryption"],
+    category: "Encryption_Tools",
+    url: "/tools/sha256-encrypt",
+    icon: Text,
+  },
+
+  sha384Encrypt: {
+    label: "SHA384 Encrypt",
+    description:
+      "Encrypt your text using the SHA384 hashing algorithm for secure storage",
+    badges: ["SHA384", "Encryption"],
+    category: "Encryption_Tools",
+    url: "/tools/sha384-encrypt",
+    icon: Text,
+  },
+
+  sha512Encrypt: {
+    label: "SHA512 Encrypt",
+    description:
+      "Encrypt your text using the SHA512 hashing algorithm for secure storage",
+    badges: ["SHA512", "Encryption"],
+    category: "Encryption_Tools",
+    url: "/tools/sha512-encrypt",
+    icon: Text,
+  },
+
   passwordGenerator: {
     label: "Password Generator",
     description:

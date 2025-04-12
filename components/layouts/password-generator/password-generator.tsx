@@ -61,8 +61,8 @@ export default function PasswordGenerator() {
     lowercaseEasyToRead: "abcdefghjkmnpqrstuvwxyz", // without i, l, o
     numbersStandard: "0123456789",
     numbersEasyToRead: "23456789", // without 0, 1
-    symbolsStandard: "!@#$%^&*()_+-=[]{}|;:,./<>?",
-    symbolsEasyToRead: "@#$%^&*_+-=", // easier to distinguish symbols
+    symbolsStandard: "!@#$^*",
+    symbolsEasyToRead: "@#$^*", // easier to distinguish symbols
   };
 
   // Generate a random password based on the current form settings
