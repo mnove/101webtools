@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { RegisterWorker } from "./register-worker";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,8 +63,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isDev = process.env.NODE_ENV === "development";
+
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-website-id="89b094a6-cb58-4888-9200-9969a7e1095f"
+    >
+      {!isDev ? (
+        <Script
+          async
+          src="https://cloud.umami.is/script.js"
+          data-website-id="89b094a6-cb58-4888-9200-9969a7e1095f"
+        />
+      ) : null}
       <RegisterWorker />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
