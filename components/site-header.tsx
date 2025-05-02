@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, SidebarIcon, Star } from "lucide-react";
+import { Github, SidebarIcon } from "lucide-react";
 
 import { SearchForm } from "@/components/search-form";
 import { Button } from "@/components/ui/button";
