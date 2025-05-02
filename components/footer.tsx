@@ -4,35 +4,9 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Icons } from "./ui/icon";
 
-// const companyLinks = [
-//   { label: "About Us", href: "/about" },
-//   { label: "Careers", href: "/careers", badge: <Badge>Hiring</Badge> },
-//   { label: "Contact", href: "/contact" },
-// ];
-
-// const productLinks = [
-//   { label: "Features", href: "/features" },
-//   { label: "Pricing", href: "/pricing" },
-//   { label: "Documentation", href: "/docs" },
-// ];
-
-// const supportLinks = [
-//   { label: "Help Center", href: "/help" },
-//   { label: "Community", href: "/community" },
-//   { label: "Status", href: "/status" },
-// ];
-
-// const legalLinks = [
-//   { label: "Terms of Service", href: "/terms" },
-//   { label: "Privacy Policy", href: "/privacy" },
-//   { label: "Cookie Policy", href: "/cookies" },
-// ];
-
-// const about = [
-//   { label: "Commerce Engine", href: "#features" },
-//   { label: "Payment Integrations", href: "#payment-integrations" },
-//   { label: "Global Commerce", href: "#global-commerce" },
-// ];
+const about = [
+  { label: "Github Repo", href: "https://github.com/mnove/101webtools" },
+];
 
 type FooterProps = {
   hideTopSeparator?: boolean;
@@ -63,15 +37,7 @@ export const Footer = ({
               free to contact us.
             </p>
           </div>
-
-          {/* <div className="col-span-2">
-            <div className="grid w-[100%] grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-              <ButtonLinkList title="Docs" links={docsLinks} />
-              <ButtonLinkList title="API" links={apiLinks} />
-              <ButtonLinkList title="Product" links={productLinks} />
-              <ButtonLinkList title="Analytics" links={dashboardLinks} />
-            </div>
-          </div> */}
+          <ButtonLinkList title="about" links={about} />
         </div>
 
         <Separator />

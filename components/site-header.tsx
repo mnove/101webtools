@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarIcon, Star } from "lucide-react";
+import { Github, SidebarIcon, Star } from "lucide-react";
 
 import { SearchForm } from "@/components/search-form";
 import { Button } from "@/components/ui/button";
@@ -40,14 +40,9 @@ export function SiteHeaderTools() {
             <span className="pr-1">🎁</span> Request a Tool
           </Link>
         </Button>
-        <Button variant="brandOutline">
-          {" "}
-          <Star className="text-brand" /> Unlock Pro Features
-        </Button>
 
         {/* <InstallButton /> */}
         <Separator orientation="vertical" className="mr-2 h-4" />
-        <Button variant="link">Sign up</Button>
       </div>
     </header>
   );
@@ -83,14 +78,17 @@ export function SiteHeaderHome() {
             <span className="pr-1">🎁</span> Request a Tool
           </Link>
         </Button>
-        <Button variant="brandOutline">
-          {" "}
-          <Star className="text-brand" /> Unlock Pro Features
-        </Button>
 
         {/* <InstallButton /> */}
         <Separator orientation="vertical" className="mr-2 h-4" />
-        <Button variant="link">Sign up</Button>
+        <Button variant="outline" asChild>
+          <div>
+            <Github className="h-4 w-4" />
+            <Link href="https://github.com/mnove/101webtools" target="_blank">
+              Github
+            </Link>
+          </div>
+        </Button>
       </div>
     </header>
   );
