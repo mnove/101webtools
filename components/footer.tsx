@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Icons } from "./ui/icon";
 
 const about = [
+  { label: "About", href: "/about" },
   { label: "Github Repo", href: "https://github.com/mnove/101webtools" },
 ];
 

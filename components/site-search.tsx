@@ -49,14 +49,6 @@ export function SearchDialog({ open, setOpen }: SearchDialogProps) {
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
 
-        {searchValue === "" && (
-          <CommandGroup heading="Suggestions">
-            <CommandItem>Calendar</CommandItem>
-            <CommandItem>Search Emoji</CommandItem>
-            <CommandItem>Calculator</CommandItem>
-          </CommandGroup>
-        )}
-
         {Object.entries(toolsByCategory).map(([category, tools]) => (
           <CommandGroup key={category} heading={category.replace("_", " ")}>
             {tools.map((tool) => (

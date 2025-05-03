@@ -32,6 +32,9 @@ export function SiteHeaderTools() {
       </div>
 
       <div className="grow-0 items-center justify-end gap-2 hidden md:flex">
+        <Button variant="ghost" asChild>
+          <Link href="/about">About</Link>
+        </Button>
         <Button variant="outline" asChild>
           <Link
             href={siteConfig.feedbackUrls.toolRequestFormUrl}
@@ -70,6 +73,9 @@ export function SiteHeaderHome() {
       </div>
 
       <div className="grow-0 items-center justify-end gap-2 hidden md:flex">
+        <Button variant="ghost" asChild>
+          <Link href="/about">About</Link>
+        </Button>
         <Button variant="outline" asChild>
           <Link
             href={siteConfig.feedbackUrls.toolRequestFormUrl}
