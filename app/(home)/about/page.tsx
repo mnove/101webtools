@@ -55,10 +55,6 @@ export default function AboutPage() {
             features
           </li>
           <li>
-            <span className="font-medium">No Ads</span> - Clean,
-            distraction-free interface without annoying advertisements
-          </li>
-          <li>
             <span className="font-medium">Privacy Focused</span> - Your data
             stays on your device; we don&apos;t collect or store your
             information

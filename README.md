@@ -10,7 +10,7 @@
   <h3 align="center">101webtools.com</h3>
 
   <p align="center">
-    A collection of 101+ free online tools to help you with your web development projects.
+    A collection of free online tools to help you with your web development projects.
     <br />
     <a href="https://101webtools.com"><strong>Visit the Website »</strong></a>
     <br />
@@ -62,7 +62,6 @@ The project features:
 - **100+ Free Tools**: A growing collection of utilities for developers and designers
 - **Modern UI**: Clean, responsive interface built with Next.js and Tailwind CSS
 - **Progressive Web App**: Install as a PWA for offline access to selected tools
-- **No Ads or Tracking**: Privacy-focused with no intrusive advertisements
 - **Open Source**: Community-driven development
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
