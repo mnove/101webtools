@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { siteConfig } from "@/config/site";
 import { toolsData } from "@/lib/tools-data";
-import { Bug, Info, Megaphone, MoreHorizontal } from "lucide-react";
+import { Bug, Info, Megaphone, MoreHorizontal, Star } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -15,6 +15,8 @@ import {
 } from "./ui/tooltip";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useFavorites } from "./favorites-context";
+import React from "react";
 
 export default function ToolPageHeader({
   toolName,
@@ -33,23 +35,32 @@ export default function ToolPageHeader({
   console.log("toolFeedbackUrl", toolFeedbackUrl.href);
 
   const isMobile = useIsMobile();
-  // const [isSticky, setIsSticky] = useState(false);
-  // const headerRef = useRef<HTMLDivElement>(null);
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+  // const [isFavoriteState, setIsFavoriteState] = React.useState(
+  //   isFavorite(toolName as string)
+  // );
 
-  // useEffect(() => {
-  //   const header = headerRef.current;
-  //   if (!header) return;
+  // React.useEffect(() => {
+  //   setIsFavoriteState(isFavorite(toolName as string));
+  // }, [isFavorite, toolName]);
 
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       setIsSticky(!entry.isIntersecting);
-  //     },
-  //     { threshold: 1, rootMargin: "-1px 0px 0px 0px" }
-  //   );
+  // const toggleAddToFavorites = () => {
+  //   if (isFavorite(toolName as string)) {
+  //     removeFavorite(toolName as string);
+  //     setIsFavoriteState(false);
+  //   } else {
+  //     addFavorite(toolName as string);
+  //     setIsFavoriteState(true);
+  //   }
+  // };
 
-  //   observer.observe(header);
-  //   return () => observer.disconnect();
-  // }, []);
+  const toggleAddToFavorites = () => {
+    if (isFavorite(toolName as string)) {
+      removeFavorite(toolName as string);
+    } else {
+      addFavorite(toolName as string);
+    }
+  };
 
   const toolDescription = (
     <TooltipProvider>
@@ -123,6 +134,34 @@ export default function ToolPageHeader({
   const feedbackButtons = (
     <div className="flex items-center gap-2">
       <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            {" "}
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => toggleAddToFavorites()}
+            >
+              <>
+                {isFavorite(toolName as string) ? (
+                  <>
+                    <Star className="w-4 h-4 text-yellow-500  fill-yellow-500 group-hover:text-yellow-400 transition-colors " />
+                    <span className="text-yellow-400 ">Added to Favorites</span>
+                  </>
+                ) : (
+                  <>
+                    <Star className="w-4 h-4 text-yellow-500  group-hover:text-yellow-400 transition-colors " />
+                    <span className=" ">Add to Favorites</span>
+                  </>
+                )}
+                {/* <span className="hidden lg:block">Add to Favorites</span> */}
+              </>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Add to favorites</p>
+          </TooltipContent>
+        </Tooltip>
         <Tooltip>
           <TooltipTrigger>
             {" "}

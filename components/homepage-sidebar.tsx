@@ -54,9 +54,10 @@ export function HomepageSidebar({
     >
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem> </SidebarMenuItem>
+          <SidebarMenuItem>ss </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
         <NavTools toolsData={data.tools} />
       </SidebarContent>

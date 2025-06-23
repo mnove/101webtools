@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { RegisterWorker } from "./register-worker";
 import Script from "next/script";
+import { FavoritesProvider } from "@/components/favorites-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -89,7 +90,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <>{children}</>
+          <FavoritesProvider>{children}</FavoritesProvider>
           <Toaster />
         </ThemeProvider>
       </body>

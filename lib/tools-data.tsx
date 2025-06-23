@@ -216,3 +216,8 @@ export const toolsData: ToolsData = {
     icon: Timer,
   },
 };
+
+// Get tool by name
+export function getToolByName(name: string): Tool | undefined {
+  return toolsData[name];
+}
