@@ -9,11 +9,15 @@ import {
 } from "@/components/ui/sidebar";
 import { ToolsData } from "@/lib/tools-data";
 import Link from "next/link";
+import { useFavorites } from "./favorites-context";
+import { Button } from "./ui/button";
+import { Star } from "lucide-react";
 
 // Define a processed group type for our sidebar navigation
 type ProcessedGroup = {
   group: string;
   items: {
+    id: string;
     name: string;
     url: string;
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -38,6 +42,7 @@ export function NavTools({ toolsData }: { toolsData: ToolsData }) {
 
       // Add tool to its category
       groupedTools[categoryName].push({
+        id: _key,
         name: tool.label,
         url: tool.url,
         icon: tool.icon,
@@ -59,6 +64,7 @@ export function NavTools({ toolsData }: { toolsData: ToolsData }) {
 
   const tools = processToolsData();
 
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       {tools.map((toolGroup) => (
@@ -71,6 +77,26 @@ export function NavTools({ toolsData }: { toolsData: ToolsData }) {
                   <Link href={item.url}>
                     <item.icon />
                     <span>{item.name}</span>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="ml-2"
+                      onClick={() => {
+                        if (isFavorite(item.id)) {
+                          removeFavorite(item.id);
+                        } else {
+                          addFavorite(item.id);
+                        }
+                      }}
+                    >
+                      <Star
+                        className={`w-4 h-4 ${
+                          isFavorite(item.name)
+                            ? "text-yellow-500"
+                            : "text-muted-foreground"
+                        }`}
+                      />
+                    </Button>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

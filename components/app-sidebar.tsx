@@ -13,6 +13,7 @@ import {
 import { toolsData, ToolsData } from "@/lib/tools-data";
 import { ModeToggle } from "./mode-toggle";
 import { NavTools } from "./nav-tools";
+import { NavFavorites } from "./nav-favorites";
 
 export type NavbarTool = {
   name: string;
@@ -103,10 +104,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
       {...props}
     >
-      <SidebarHeader>
+      <SidebarHeader className="p-0">
         <SidebarMenu>
-          <SidebarMenuItem> </SidebarMenuItem>
+          <SidebarMenuItem></SidebarMenuItem>
         </SidebarMenu>
+        <NavFavorites />
       </SidebarHeader>
       <SidebarContent>
         <NavTools toolsData={data.tools} />
