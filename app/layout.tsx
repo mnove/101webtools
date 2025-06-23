@@ -1,14 +1,14 @@
+import { FavoritesProvider } from "@/components/favorites-context";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { RegisterWorker } from "./register-worker";
-import Script from "next/script";
-import { FavoritesProvider } from "@/components/favorites-context";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
 });
 
@@ -81,7 +81,7 @@ export default function RootLayout({
       ) : null}
       <RegisterWorker />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${plusJakartaSans.variable} ${geistMono.variable} antialiased`}
         data-vaul-drawer-wrapper=""
       >
         <ThemeProvider
