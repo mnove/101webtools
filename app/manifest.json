@@ -1,7 +1,7 @@
 {
   "name": "101webtools",
   "short_name": "101tools",
-  "description": "A collection of web tools for developers and designers.",
+  "description": "Free, open source web tools for developers and designers.",
   "start_url": "/",
   "icons": [
     {
@@ -15,6 +15,28 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot_01.jpg",
+      "sizes": "1251x846",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "101webtools_homepage"
+    },
+    {
+      "src": "/screenshot_02.jpg",
+      "sizes": "1251x846",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "101webtools_tool"
+    },
+    {
+      "src": "/screenshot_01_mobile.jpg",
+      "sizes": "450x393",
+      "type": "image/jpeg",
+      "label": "101webtools_tool"
     }
   ],
   "theme_color": "#000000",

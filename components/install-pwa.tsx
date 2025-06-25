@@ -1,5 +1,9 @@
 // components/InstallButton.tsx
+"use client";
+
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import { Smartphone } from "lucide-react";
 
 const InstallButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
@@ -34,9 +38,15 @@ const InstallButton = () => {
   return (
     <>
       {isInstallable && (
-        <button onClick={handleInstallClick} className="install-button">
+        <Button
+          size="lg"
+          variant="secondary"
+          onClick={handleInstallClick}
+          className="install-button"
+        >
+          <Smartphone className="mr-2 h-5 w-5" />
           Install App
-        </button>
+        </Button>
       )}
     </>
   );

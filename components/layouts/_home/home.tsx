@@ -1,6 +1,7 @@
+import InstallButton from "@/components/install-pwa";
 import { Button } from "@/components/ui/button";
 import { toolsData } from "@/lib/tools-data";
-import { ArrowRight, Smartphone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Homepage() {
@@ -8,21 +9,33 @@ export default function Homepage() {
     <div className="container px-4 py-8 mx-auto">
       {/* Hero Section */}
       <section className="py-16 text-center">
-        <h1 className="text-4xl text-balance tracking-tight  md:text-5xl lg:text-7xl font-extrabold mb-6">
-          All your favorite tools. <br />
-          One place
-        </h1>
-        <p className="tracking-tight text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+        <div className="flex flex-col items-center mb-8 gap-3">
+          <div className="border p-2 px-4 rounded-lg w-fit">
+            100% Open Source
+          </div>
+          <h1 className="text-4xl text-balance tracking-tight  md:text-5xl lg:text-7xl font-extrabold mb-6">
+            Your favorite web tools. <br />
+            One place
+          </h1>
+          {/* <p className="tracking-tight text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
           A collection of essential tools to streamline your development
           workflow
-        </p>
+        </p> */}
+
+          <div className="flex flex-row sm:flex-row gap-4 items-center justify-center mb-8">
+            <div className="border p-2 px-4 rounded-lg">100% Free</div>
+            <div className="border p-2 px-4 rounded-lg">Zero Ads</div>
+            <div className="border p-2 px-4 rounded-lg">App + Offline</div>
+          </div>
+        </div>
 
         <div className="flex flex-row gap-4 items-center w-full justify-center">
-          <Button size="lg" asChild variant="outline">
+          {/* <Button size="lg" asChild variant="outline">
             <Link href="#tools-section">
               Get the App <Smartphone className="ml-2 h-5 w-5" />
             </Link>
-          </Button>
+          </Button> */}
+          <InstallButton />
           <Button size="lg" asChild>
             <Link href="#tools-section">
               Explore Tools <ArrowRight className="ml-2 h-5 w-5" />
