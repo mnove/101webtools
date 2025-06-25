@@ -10,7 +10,7 @@
   <h3 align="center">101webtools.com</h3>
 
   <p align="center">
-    A collection of free online tools to help you with your web development projects.
+    A collection of free, open-source online tools to help you with your web development projects.
     <br />
     <a href="https://101webtools.com"><strong>Visit the Website »</strong></a>
     <br />
@@ -57,9 +57,11 @@
 
 101webtools.com is a comprehensive collection of free online tools designed to enhance web development workflows. Whether you need to generate UUIDs, minify JavaScript code, encode/decode Base64, or create QR codes, this platform provides a wide range of utilities accessible directly from your browser.
 
+All the tools are open source.
+
 The project features:
 
-- **100+ Free Tools**: A growing collection of utilities for developers and designers
+- **Free Tools**: A growing collection of utilities for developers and designers
 - **Modern UI**: Clean, responsive interface built with Next.js and Tailwind CSS
 - **Progressive Web App**: Install as a PWA for offline access to selected tools
 - **Open Source**: Community-driven development
@@ -119,30 +121,44 @@ To get a local copy up and running, follow these simple steps.
 
   - MD5 Encrypt
   - SHA1 Encrypt
+  - SHA224 Encrypt
   - SHA256 Encrypt
+  - SHA384 Encrypt
   - SHA512 Encrypt
-  - And more...
 
-- **Code Utilities**
+- **Security Tools**
+
+  - Password Generator
+
+- **Text Manipulation**
+
+  - Binary to Text Converter
+  - Base64 Encoder/Decoder
+  - URL Encoder/Decoder
+
+- **Code Minifiers**
 
   - JavaScript Minifier
   - CSS Minifier
   - HTML Minifier
-  - Base64 Encoder/Decoder
-  - URL Encoder/Decoder
 
-- **Generator Tools**
+- **Code Generators**
 
+  - Barcode Generator
+  - QR Code Generator
+
+- **ID Generators**
+
+  - Nano ID Generator
   - UUID Generator
   - ULID Generator
-  - NanoID Generator
-  - QR Code Generator
-  - Barcode Generator
-  - Password Generator
+
+- **Design Tools**
+
+  - Typographic Scale Generator
 
 - **Productivity Tools**
   - Pomodoro Timer
-  - Typescale Generator
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -150,17 +166,7 @@ To get a local copy up and running, follow these simple steps.
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+For contributions, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 <!-- LICENSE -->
 
