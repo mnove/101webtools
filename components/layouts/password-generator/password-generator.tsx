@@ -186,7 +186,7 @@ export default function PasswordGenerator() {
             />
             <Button
               onClick={generatePassword}
-              variant="brand"
+              variant="default"
               className="hidden lg:flex"
             >
               Generate Password
@@ -260,7 +260,7 @@ export default function PasswordGenerator() {
           <div className="mt-2">
             <Button
               onClick={generatePassword}
-              variant="brand"
+              variant="default"
               className="flex lg:hidden w-full"
             >
               {" "}

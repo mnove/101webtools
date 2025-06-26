@@ -268,7 +268,7 @@ export default function UUIDGenerator() {
             </Select>
           </div>
 
-          <Button onClick={generateUUIDs} className="w-full" variant="brand">
+          <Button onClick={generateUUIDs} className="w-full" variant="default">
             <RefreshCw className="mr-2 h-4 w-4" /> Generate UUIDs
           </Button>
 
