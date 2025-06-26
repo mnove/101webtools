@@ -688,7 +688,7 @@ export default function BarcodeGenerator() {
                     <Clipboard className="h-3 w-3 mr-1" /> Copy as SVG
                   </Button>
                   <Button
-                    variant="brand"
+                    variant="default"
                     size="sm"
                     onClick={downloadBarcodeImage}
                     disabled={!barcodeImageUrl || isGeneratingImage}

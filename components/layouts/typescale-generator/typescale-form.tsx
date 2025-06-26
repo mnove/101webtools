@@ -211,7 +211,7 @@ export function TypeScaleForm({
         <div className="w-full">
           <Button
             type="submit"
-            variant="brand"
+            variant="default"
             disabled={!form.formState.isValid || form.formState.isSubmitting}
             className="w-full"
           >

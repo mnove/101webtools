@@ -197,7 +197,6 @@ export default function MD5Encrypt() {
               <RefreshCw className="h-3 w-3 mr-1" /> Reset
             </Button>
             <Button
-              variant="brand"
               onClick={generateHash}
               disabled={!hashInput}
               className="px-8"
@@ -264,7 +263,6 @@ export default function MD5Encrypt() {
               <RefreshCw className="h-3 w-3 mr-1" /> Reset
             </Button>
             <Button
-              variant="brand"
               onClick={checkHash}
               disabled={!verifyInput || !verifyHash}
               className="px-8"

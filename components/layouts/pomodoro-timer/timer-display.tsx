@@ -120,7 +120,7 @@ export const TimerDisplay = ({
       <div className="flex gap-4">
         <Button
           onClick={onToggleTimer}
-          variant="brand"
+          variant="default"
           size="lg"
           className="w-32"
         >

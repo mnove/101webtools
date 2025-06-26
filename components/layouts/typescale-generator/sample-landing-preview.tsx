@@ -112,7 +112,7 @@ export function SampleLandingPreview({
             Consistent type scales create visual harmony that guides users
             through your content. Choose the perfect scale for your design.
           </p>
-          <Button variant="brand" size="lg">
+          <Button variant="default" size="lg">
             Get Started <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </section>

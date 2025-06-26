@@ -238,7 +238,7 @@ export default function CssMinifier() {
           <RefreshCw className="h-3 w-3 mr-1" /> Reset
         </Button>
         <Button
-          variant="brand"
+          variant="default"
           onClick={handleMinify}
           disabled={isLoading || !code}
           className="px-8"

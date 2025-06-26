@@ -268,7 +268,7 @@ export default function ULIDGenerator() {
             </div>
           </div>
 
-          <Button onClick={generateULIDs} className="w-full" variant="brand">
+          <Button onClick={generateULIDs} className="w-full" variant="default">
             <RefreshCw className="mr-2 h-4 w-4" /> Generate ULIDs
           </Button>
 

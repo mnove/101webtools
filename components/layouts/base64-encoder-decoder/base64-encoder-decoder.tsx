@@ -270,7 +270,7 @@ export default function Base64EncoderDecoder() {
               <RefreshCw className="h-3 w-3 mr-1" /> Reset
             </Button>
             <Button
-              variant="brand"
+              variant="default"
               onClick={handleEncode}
               disabled={!encodeInput}
               className="px-8"
@@ -384,7 +384,7 @@ export default function Base64EncoderDecoder() {
               <RefreshCw className="h-3 w-3 mr-1" /> Reset
             </Button>
             <Button
-              variant="brand"
+              variant="default"
               onClick={handleDecode}
               disabled={!decodeInput}
               className="px-8"

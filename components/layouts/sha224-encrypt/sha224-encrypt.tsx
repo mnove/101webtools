@@ -152,7 +152,7 @@ export default function SHA224Encrypt() {
           <RefreshCw className="h-3 w-3 mr-1" /> Reset
         </Button>
         <Button
-          variant="brand"
+          variant="default"
           onClick={handleEncrypt}
           disabled={!input.trim() || isLoading}
           className="px-8"
