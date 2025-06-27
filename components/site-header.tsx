@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { useSidebar } from "@/components/ui/sidebar";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
+import { ModeToggle } from "./mode-toggle";
 
 export function SiteHeaderTools() {
   const { toggleSidebar } = useSidebar();
@@ -72,7 +73,7 @@ export function SiteHeaderHome() {
         <SearchForm className="w-full sm:ml-auto sm:w-auto text-nowrap" />
       </div>
 
-      <div className="grow-0 items-center justify-end gap-2 hidden md:flex">
+      <div className="grow-0 items-center justify-end gap-2 hidden md:flex h-5">
         <Button variant="ghost" asChild>
           <Link href="/about">About</Link>
         </Button>
@@ -86,7 +87,7 @@ export function SiteHeaderHome() {
         </Button>
 
         {/* <InstallButton /> */}
-        <Separator orientation="vertical" className="mr-2 h-4" />
+        <Separator orientation="vertical" />
         <Button variant="outline" asChild>
           <div>
             <Github className="h-4 w-4" />
@@ -95,6 +96,7 @@ export function SiteHeaderHome() {
             </Link>
           </div>
         </Button>
+        <ModeToggle />
       </div>
     </header>
   );
