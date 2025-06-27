@@ -1,4 +1,4 @@
-import { Barcode, IdCard, QrCode, Text, Timer, FileJson } from "lucide-react";
+import { Barcode, FileJson, IdCard, QrCode, Text, Timer } from "lucide-react";
 
 type Tool = {
   label: string;
@@ -227,6 +227,17 @@ export const toolsData: ToolsData = {
     category: "Code_Tools",
     url: "/tools/json-viewer",
     icon: FileJson,
+    isNew: true,
+  },
+
+  loremIpsumGenerator: {
+    label: "Lorem Ipsum Generator",
+    description:
+      "Generate placeholder text in words, sentences, or paragraphs for your designs and mockups",
+    badges: ["Lorem Ipsum", "Placeholder", "Text"],
+    category: "Text_Manipulation",
+    url: "/tools/lorem-ipsum-generator",
+    icon: Text,
     isNew: true,
   },
 };

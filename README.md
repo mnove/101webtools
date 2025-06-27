@@ -134,6 +134,7 @@ To get a local copy up and running, follow these simple steps.
 
   - Binary to Text Converter
   - Base64 Encoder/Decoder
+  - Lorem Ipsum Generator
   - URL Encoder/Decoder
 
 - **Code Minifiers / Tools**

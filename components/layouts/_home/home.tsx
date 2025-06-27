@@ -94,11 +94,11 @@ const RequestATool = () => (
 
 const comingSoonTools: (typeof toolsData)[string][] = [
   {
-    label: "Lorem Ipsum Generator",
-    category: "Text Manipulation",
-    description: "Create placeholder text for your projects.",
+    label: "JWT Encoder/Decoder",
+    category: "Code Generators",
+    description: "Encode and decode JSON Web Tokens (JWT) with ease.",
     url: "#",
-    badges: ["Text Manipulation", "Placeholder Text"],
+    badges: ["Text Manipulation", "JWT"],
     icon: () => <Star className="h-6 w-6 text-yellow-500" />,
   },
   {
