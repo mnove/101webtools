@@ -6,7 +6,32 @@ import { Icons } from "./ui/icon";
 
 const about = [
   { label: "About", href: "/about" },
-  { label: "Github Repo", href: "https://github.com/mnove/101webtools" },
+  {
+    label: "Contact",
+    href: "https://github.com/mnove/101webtools?tab=readme-ov-file#contact",
+  },
+];
+
+const tools = [
+  {
+    label: "Request a Tool",
+    href: "https://tally.so/r/3jzroJ",
+    badge: <span className="inline-block px-2 py-1 ">🎁</span>,
+  },
+  { label: "Github", href: "https://github.com/mnove/101webtools" },
+];
+
+const project = [
+  {
+    label: "Contribute",
+    href: "https://github.com/mnove/101webtools/blob/main/CONTRIBUTING.md",
+    newTab: true,
+  },
+  {
+    label: "Open an issue",
+    href: "https://github.com/mnove/101webtools/issues/new?labels=bug&template=bug-report---.md",
+    newTab: true,
+  },
 ];
 
 type FooterProps = {
@@ -28,7 +53,7 @@ export const Footer = ({
       )}
     >
       <div className="flex w-full flex-col justify-around gap-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="col-span-1 flex flex-col gap-4">
             <Icons.LogoFull />
             <p className="text-sm text-muted-foreground">
@@ -38,7 +63,13 @@ export const Footer = ({
               free to contact us.
             </p>
           </div>
-          <ButtonLinkList title="about" links={about} />
+
+          <div className="col-span-2 grid grid-cols-1 gap-2 md:grid-cols-3 md:ml-5">
+            {" "}
+            <ButtonLinkList title="about" links={about} />
+            <ButtonLinkList title="tools" links={tools} />
+            <ButtonLinkList title="project" links={project} />
+          </div>
         </div>
 
         <Separator />
@@ -59,7 +90,12 @@ export const Footer = ({
 
 interface ButtonLinkListProps {
   title: string;
-  links: { label: string; href: string; badge?: React.ReactNode }[];
+  links: {
+    label: string;
+    href: string;
+    badge?: React.ReactNode;
+    newTab?: boolean;
+  }[];
 }
 
 export const ButtonLinkList = ({ title, links }: ButtonLinkListProps) => {
@@ -69,7 +105,9 @@ export const ButtonLinkList = ({ title, links }: ButtonLinkListProps) => {
       {links.map((link, index) => (
         <div key={index} className="flex flex-row gap-2">
           <Button key={index} variant="link" size="sm" className="p-0">
-            <Link href={link.href}>{link.label}</Link>
+            <Link href={link.href} target={link.newTab ? "_blank" : "_self"}>
+              {link.label}
+            </Link>
           </Button>
           {link.badge && link.badge}
         </div>

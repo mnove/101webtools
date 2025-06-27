@@ -196,7 +196,7 @@ export default function ToolPageHeader({
     <>
       <div className="h-1 top-0 w-full" /> {/* Observer target */}
       <div
-        className={`sticky top-0 left-0 right-0 bg-background/95 backdrop-blur z-50 shadow-md py-0transition-all duration-200`}
+        className={`sticky top-0 left-0 right-0 bg-background/95 backdrop-blur z-50 py-0 transition-all duration-200`}
       >
         <div className="container mx-auto max-w-[100rem]">
           <div className="flex flex-row w-full items-start justify-between flex-wrap">

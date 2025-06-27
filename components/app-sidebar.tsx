@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -11,9 +9,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { toolsData, ToolsData } from "@/lib/tools-data";
+import * as React from "react";
 import { ModeToggle } from "./mode-toggle";
-import { NavTools } from "./nav-tools";
 import { NavFavorites } from "./nav-favorites";
+import { NavTools } from "./nav-tools";
 
 export type NavbarTool = {
   name: string;
@@ -27,7 +26,7 @@ export type NavbarToolGroup = {
 };
 
 export type NavbarData = {
-  user: {
+  user?: {
     name: string;
     email: string;
     avatar: string;
@@ -37,64 +36,6 @@ export type NavbarData = {
 };
 
 const data: NavbarData = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  //   {
-  //     group: "ID Generators",
-  //     items: [
-  //       {
-  //         name: "Nano ID Generator",
-  //         url: "/tools/nanoid-generator",
-  //         icon: IdCard,
-  //       },
-  //       {
-  //         name: "UUID Generator",
-  //         url: "/tools/uuid-generator",
-  //         icon: IdCard,
-  //       },
-  //       {
-  //         name: "ULID Generator",
-  //         url: "/tools/ulid-generator",
-  //         icon: IdCard,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     group: "Code Generators",
-  //     items: [
-  //       {
-  //         name: "Barcode Generator",
-  //         url: "/tools/barcode-generator",
-  //         icon: Barcode,
-  //       },
-  //     ],
-  //   },
-
-  //   {
-  //     group: "Design Tools",
-  //     items: [
-  //       {
-  //         name: "Typographic Scale Generator",
-  //         url: "/tools/typescale-generator",
-  //         icon: BookOpen,
-  //       },
-  //     ],
-  //   },
-
-  //   {
-  //     group: "Productivity",
-  //     items: [
-  //       {
-  //         name: "Pomodoro Timer",
-  //         url: "/tools/pomodoro-timer",
-  //         icon: Timer,
-  //       },
-  //     ],
-  //   },
-  // ],
   tools: toolsData,
 };
 

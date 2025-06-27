@@ -11,7 +11,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { ToolsData, toolsData } from "@/lib/tools-data";
-import { ModeToggle } from "./mode-toggle";
 import { NavTools } from "./nav-tools";
 
 export type NavbarTool = {
@@ -61,11 +60,7 @@ export function HomepageSidebar({
       <SidebarContent>
         <NavTools toolsData={data.tools} />
       </SidebarContent>
-      <SidebarFooter>
-        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
-        {/* <NavUser user={data.user} /> */}
-        <ModeToggle />
-      </SidebarFooter>
+      <SidebarFooter></SidebarFooter>
     </Sidebar>
   );
 }
