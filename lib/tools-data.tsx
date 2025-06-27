@@ -1,4 +1,4 @@
-import { Barcode, IdCard, QrCode, Text, Timer } from "lucide-react";
+import { Barcode, IdCard, QrCode, Text, Timer, FileJson } from "lucide-react";
 
 type Tool = {
   label: string;
@@ -7,6 +7,7 @@ type Tool = {
   category: string;
   url: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  isNew?: boolean;
 };
 
 export type ToolsData = {
@@ -77,6 +78,7 @@ export const toolsData: ToolsData = {
     category: "Encryption_Tools",
     url: "/tools/sha512-encrypt",
     icon: Text,
+    isNew: true,
   },
 
   passwordGenerator: {
@@ -166,6 +168,7 @@ export const toolsData: ToolsData = {
     category: "Code_Generators",
     url: "/tools/qrcode-generator",
     icon: QrCode,
+    isNew: true,
   },
 
   nanoidGenerator: {
@@ -214,6 +217,17 @@ export const toolsData: ToolsData = {
     category: "Productivity_Tools",
     url: "/tools/pomodoro-timer",
     icon: Timer,
+  },
+
+  jsonViewer: {
+    label: "JSON Viewer",
+    description:
+      "View, validate, and format JSON data with an interactive tree structure",
+    badges: ["JSON", "Viewer", "Formatter"],
+    category: "Code_Tools",
+    url: "/tools/json-viewer",
+    icon: FileJson,
+    isNew: true,
   },
 };
 

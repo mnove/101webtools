@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useFavorites } from "./favorites-context";
 import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 
 // Define a processed group type for our sidebar navigation
 type ProcessedGroup = {
@@ -35,6 +36,7 @@ type NavToolItemProps = {
   isFavorite: (id: string) => boolean;
   addFavorite: (id: string) => void;
   removeFavorite: (id: string) => void;
+  isNew?: boolean; // Optional prop to indicate if the tool is new
 };
 
 function NavToolItem({
@@ -42,6 +44,7 @@ function NavToolItem({
   isFavorite,
   addFavorite,
   removeFavorite,
+  isNew = false, // Default to false if not provided
 }: NavToolItemProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -63,6 +66,15 @@ function NavToolItem({
               {item.name}
             </span>
           </div>
+
+          {isNew && (
+            <Badge
+              variant="outline"
+              className="border-teal-500/50 text-teal-500 "
+            >
+              New
+            </Badge>
+          )}
 
           {isHovered && (
             <div className="absolute right-2 top-1/2 -translate-y-1/2">
@@ -149,6 +161,7 @@ export function NavTools({ toolsData }: { toolsData: ToolsData }) {
                 isFavorite={isFavorite}
                 addFavorite={addFavorite}
                 removeFavorite={removeFavorite}
+                isNew={toolsData[item.id]?.isNew} // Check if the tool is new
               />
             ))}
           </SidebarMenu>

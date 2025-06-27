@@ -7,20 +7,28 @@ import { Hero } from "./hero";
 function ToolCard({
   tool,
   isComingSoon,
+  isNew = false,
 }: {
   tool: (typeof toolsData)[string];
   isComingSoon: boolean;
+  isNew?: boolean;
 }) {
   return (
     <Link
       href={tool.url}
       className={cn(
-        "group block p-6 border rounded-lg transition-all hover:border-primary hover:shadow-md bg-card trasition-all",
+        "group block p-6 border rounded-lg transition-all hover:border-primary hover:shadow-md bg-card trasition-all relative overflow-hidden",
         isComingSoon
           ? "opacity-100 border-dashed cursor-auto bg-card-muted"
           : "hover:bg-secondary"
       )}
     >
+      {isNew && (
+        <div className="absolute -top-2 -right-2 border border-teal-500 bg-teal-500/50 text-white text-xs font-medium px-8 py-1 transform rotate-45 translate-x-[20px] translate-y-[20px] shadow-md">
+          NEW
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-4">
         <div className="p-2 rounded-md bg-gray-100 dark:bg-gray-800">
           {tool.icon && <tool.icon className="h-6 w-6 text-primary" />}
@@ -115,12 +123,22 @@ export default function Homepage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {/* Coming Soon Tools */}
           {comingSoonTools.map((tool, index) => (
-            <ToolCard key={index} tool={tool} isComingSoon={true} />
+            <ToolCard
+              key={index}
+              tool={tool}
+              isComingSoon={true}
+              isNew={false}
+            />
           ))}
 
           {/* Regular Tools */}
           {Object.entries(toolsData).map(([key, tool]) => (
-            <ToolCard key={key} tool={tool} isComingSoon={false} />
+            <ToolCard
+              key={key}
+              tool={tool}
+              isComingSoon={false}
+              isNew={tool.isNew}
+            />
           ))}
           {/* Request a Tool Card */}
           <RequestATool />
