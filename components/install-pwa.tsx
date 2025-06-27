@@ -1,11 +1,10 @@
-// components/InstallButton.tsx
 "use client";
 
+import { Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { Smartphone } from "lucide-react";
 
-const InstallButton = () => {
+const InstallButton = ({ isMobile }: { isMobile: boolean }) => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
 
@@ -39,7 +38,7 @@ const InstallButton = () => {
     <>
       {isInstallable && (
         <Button
-          size="lg"
+          size={isMobile ? "xxl" : "xl"}
           variant="secondary"
           onClick={handleInstallClick}
           className="install-button"
