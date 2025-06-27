@@ -136,11 +136,12 @@ To get a local copy up and running, follow these simple steps.
   - Base64 Encoder/Decoder
   - URL Encoder/Decoder
 
-- **Code Minifiers**
+- **Code Minifiers / Tools**
 
   - JavaScript Minifier
   - CSS Minifier
   - HTML Minifier
+  - JSON Viewer
 
 - **Code Generators**
 
