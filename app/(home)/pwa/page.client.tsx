@@ -5,9 +5,8 @@ import { useEffect } from "react";
 import InstallButton from "@/components/install-pwa";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
 import confetti from "canvas-confetti";
-import { Download, Zap } from "lucide-react";
+import { Smartphone } from "lucide-react";
 import Link from "next/link";
 
 export function PWAHero() {
@@ -50,7 +49,6 @@ export function PWAHero() {
     return () => clearTimeout(timer);
   }, []);
 
-  const isMobile = useIsMobile();
   return (
     <div className="relative">
       {/* <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
@@ -76,17 +74,11 @@ export function PWAHero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="" asChild>
             <Link href="#installation-guide">
-              <Download className="w-5 h-5 mr-2" />
-              Install PWA Now
+              <Smartphone className="w-5 h-5 mr-2" />
+              Install PWA (Manual)
             </Link>
           </Button>
-          <InstallButton isMobile={isMobile} />
-          <Button variant="outline" size="lg" asChild>
-            <Link href="/tools">
-              <Zap className="w-5 h-5 mr-2" />
-              Try Tools Online
-            </Link>
-          </Button>
+          <InstallButton size="lg" />
         </div>
       </div>
     </div>
