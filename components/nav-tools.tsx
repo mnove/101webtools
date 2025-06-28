@@ -51,7 +51,7 @@ function NavToolItem({
   return (
     <SidebarMenuItem
       key={item.name}
-      className="group"
+      className="group "
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -61,7 +61,7 @@ function NavToolItem({
           className="flex items-center gap-2 justify-between relative"
         >
           <div className="flex items-center gap-2 flex-1">
-            <item.icon />
+            <item.icon className="w-4 h-4" />
             <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis">
               {item.name}
             </span>
@@ -70,7 +70,7 @@ function NavToolItem({
           {isNew && (
             <Badge
               variant="outline"
-              className="border-teal-500/50 text-teal-500 "
+              className="border-teal-500/50 text-teal-500 bg-sidebar absolute right-0 top-1/2 -translate-y-1/2 text-xs font-medium px-2 py-1"
             >
               New
             </Badge>
@@ -81,7 +81,7 @@ function NavToolItem({
               <Button
                 variant="secondary"
                 size="icon"
-                className="h-6 w-6"
+                className="h-6 w-6  "
                 onClick={(e) => {
                   e.preventDefault();
                   if (isFavorite(item.id)) {
@@ -94,8 +94,8 @@ function NavToolItem({
                 <Star
                   className={`w-3 h-3 ${
                     isFavorite(item.id)
-                      ? "text-yellow-500"
-                      : "text-muted-foreground"
+                      ? "text-yellow-500 fill-yellow-500"
+                      : "text-muted-foreground  stroke-yellow-500 "
                   }`}
                 />
               </Button>
@@ -149,11 +149,11 @@ export function NavTools({ toolsData }: { toolsData: ToolsData }) {
 
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup className="group-data-[collapsible=icon]:hidden py-0 px-1">
       {tools.map((toolGroup) => (
         <div key={toolGroup.group} className="mt-4">
           <SidebarGroupLabel>{toolGroup.group}</SidebarGroupLabel>
-          <SidebarMenu>
+          <SidebarMenu className="p-0">
             {toolGroup.items.map((item) => (
               <NavToolItem
                 key={item.name}

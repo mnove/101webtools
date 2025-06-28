@@ -51,8 +51,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
         <NavFavorites />
       </SidebarHeader>
-      <SidebarContent>
-        <NavTools toolsData={data.tools} />
+      <SidebarContent className="slim-scrollbar">
+        <>
+          <NavTools toolsData={data.tools} />
+        </>
       </SidebarContent>
       <SidebarFooter>
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}

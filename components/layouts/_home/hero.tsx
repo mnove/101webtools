@@ -64,7 +64,7 @@ export const Hero = () => {
       </div>
 
       <div className="flex flex-row gap-4 items-center w-full justify-center flex-wrap ">
-        <InstallButton isMobile={isMobile} />
+        <InstallButton size={isMobile ? "xxl" : "xl"} />
         <Button size={isMobile ? "xxl" : "xl"} asChild>
           <Link href="#tools-section">
             Explore Tools <ArrowRight className="ml-2 h-5 w-5" />

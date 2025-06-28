@@ -4,7 +4,11 @@ import { Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
-const InstallButton = ({ isMobile }: { isMobile: boolean }) => {
+const InstallButton = ({
+  size,
+}: {
+  size: "sm" | "default" | "lg" | "xl" | "xxl" | "icon" | null | undefined;
+}) => {
   const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
 
@@ -38,13 +42,13 @@ const InstallButton = ({ isMobile }: { isMobile: boolean }) => {
     <>
       {isInstallable && (
         <Button
-          size={isMobile ? "xxl" : "xl"}
+          size={size}
           variant="secondary"
           onClick={handleInstallClick}
           className="install-button"
         >
           <Smartphone className="mr-2 h-5 w-5" />
-          Install App
+          Install App (Auto)
         </Button>
       )}
     </>

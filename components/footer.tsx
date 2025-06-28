@@ -18,6 +18,10 @@ const tools = [
     href: "https://tally.so/r/3jzroJ",
     badge: <span className="inline-block px-2 py-1 ">🎁</span>,
   },
+  {
+    label: "Get the App",
+    href: "/pwa",
+  },
   { label: "Github", href: "https://github.com/mnove/101webtools" },
 ];
 
