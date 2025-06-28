@@ -9,6 +9,7 @@ import { useSidebar } from "@/components/ui/sidebar";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { ModeToggle } from "./mode-toggle";
+import { Badge } from "./ui/badge";
 
 export function SiteHeaderTools() {
   const { toggleSidebar } = useSidebar();
@@ -76,6 +77,12 @@ export function SiteHeaderHome() {
       <div className="grow-0 items-center justify-end gap-2 hidden md:flex h-5">
         <Button variant="ghost" asChild>
           <Link href="/about">About</Link>
+        </Button>
+
+        <Button variant="ghost" asChild>
+          <Link href="/pwa">
+            Get the App <Badge>New</Badge>
+          </Link>
         </Button>
         <Button variant="outline" asChild>
           <Link

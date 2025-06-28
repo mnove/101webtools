@@ -20,63 +20,63 @@ export type ToolsCategory = {
 };
 
 export const toolsData: ToolsData = {
-  md5Encrypt: {
-    label: "MD5 Encrypt",
+  md5HashGenerator: {
+    label: "MD5 Hash Generator",
     description:
-      "Encrypt your text using the MD5 hashing algorithm for secure storage",
-    badges: ["MD5", "Encryption"],
+      "Generate a MD5 hash for your text using the MD5 hashing algorithm",
+    badges: ["MD5", "Hash", "Generator"],
     category: "Encryption_Tools",
-    url: "/tools/md5-encrypt",
+    url: "/tools/md5-hash",
     icon: Text,
   },
 
-  sha1Encrypt: {
-    label: "SHA1 Encrypt",
+  sha1HashGenerator: {
+    label: "SHA1 Hash Generator",
     description:
-      "Encrypt your text using the SHA1 hashing algorithm for secure storage",
-    badges: ["SHA1", "Encryption"],
+      "Generate a SHA1 hash for your text using the SHA1 hashing algorithm",
+    badges: ["SHA1", "Hash", "Generator"],
     category: "Encryption_Tools",
-    url: "/tools/sha1-encrypt",
+    url: "/tools/sha1-hash",
     icon: Text,
   },
 
-  sha224Encrypt: {
-    label: "SHA224 Encrypt",
+  sha224HashGenerator: {
+    label: "SHA224 Hash Generator",
     description:
-      "Encrypt your text using the SHA224 hashing algorithm for secure storage",
-    badges: ["SHA224", "Encryption"],
+      "Generate a SHA224 hash for your text using the SHA224 hashing algorithm",
+    badges: ["SHA224", "Hash", "Generator"],
     category: "Encryption_Tools",
-    url: "/tools/sha224-encrypt",
+    url: "/tools/sha224-hash",
     icon: Text,
   },
 
-  sha256Encrypt: {
-    label: "SHA256 Encrypt",
+  sha256HashGenerator: {
+    label: "SHA256 Hash Generator",
     description:
-      "Encrypt your text using the SHA256 hashing algorithm for secure storage",
-    badges: ["SHA256", "Encryption"],
+      "Generate a SHA256 hash for your text using the SHA256 hashing algorithm",
+    badges: ["SHA256", "Hash", "Generator"],
     category: "Encryption_Tools",
-    url: "/tools/sha256-encrypt",
+    url: "/tools/sha256-hash",
     icon: Text,
   },
 
-  sha384Encrypt: {
-    label: "SHA384 Encrypt",
+  sha384HashGenerator: {
+    label: "SHA384 Hash Generator",
     description:
-      "Encrypt your text using the SHA384 hashing algorithm for secure storage",
-    badges: ["SHA384", "Encryption"],
+      "Generate a SHA384 hash for your text using the SHA384 hashing algorithm",
+    badges: ["SHA384", "Hash", "Generator"],
     category: "Encryption_Tools",
-    url: "/tools/sha384-encrypt",
+    url: "/tools/sha384-hash",
     icon: Text,
   },
 
-  sha512Encrypt: {
-    label: "SHA512 Encrypt",
+  sha512HashGenerator: {
+    label: "SHA512 Hash Generator",
     description:
-      "Encrypt your text using the SHA512 hashing algorithm for secure storage",
-    badges: ["SHA512", "Encryption"],
+      "Generate a SHA512 hash for your text using the SHA512 hashing algorithm",
+    badges: ["SHA512", "Hash", "Generator"],
     category: "Encryption_Tools",
-    url: "/tools/sha512-encrypt",
+    url: "/tools/sha512-hash",
     icon: Text,
     isNew: true,
   },

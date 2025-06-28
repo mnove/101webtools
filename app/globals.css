@@ -170,3 +170,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+.slim-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+.slim-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+.slim-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 6px;
+}
